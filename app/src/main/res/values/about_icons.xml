@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="icon_art">
+        <item>xnimrodx</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/computer_2905155</item>
+    </string-array>
+
+    <string-array name="icon_celebration">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/celebration_2979190</item>
+    </string-array>
+
+    <string-array name="icon_computer">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/coding_941564</item>
+    </string-array>
+
+    <string-array name="icon_environment">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/earth_2913120</item>
+    </string-array>
+
+    <string-array name="icon_facemask">
+        <item>monkik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/mask_3017381</item>
+    </string-array>
+
+    <string-array name="icon_github">
+        <item>Pixel perfect</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/github_2111428</item>
+    </string-array>
+
+    <string-array name="icon_help">
+        <item>bqlqn</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/about_2948059</item>
+    </string-array>
+    
+    <string-array name="icon_nature">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/plant-pot_3112656</item>
+    </string-array>
+</resources>
