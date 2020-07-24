@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -75,6 +76,18 @@ public class AboutIcons {
                 }
             }
         });
+    }
+
+    public AboutIcons hideTitle() {
+        TextView titleView = view.findViewById(R.id.title_view);
+        titleView.setVisibility(View.GONE);
+        return this;
+    }
+
+    public AboutIcons setTitle(String customTitle) {
+        TextView titleView = view.findViewById(R.id.title_view);
+        titleView.setText(customTitle);
+        return this;
     }
 
     public View get() {

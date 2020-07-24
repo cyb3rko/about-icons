@@ -12,6 +12,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(new AboutIcons(this, R.drawable.class).get());
+        setContentView(new AboutIcons(this, R.drawable.class).setTitle("Custom Title").get());
     }
 }
