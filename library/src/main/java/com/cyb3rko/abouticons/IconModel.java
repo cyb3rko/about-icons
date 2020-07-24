@@ -1,6 +1,6 @@
 package com.cyb3rko.abouticons;
 
-public class IconModel {
+class IconModel {
     private boolean modified;
     private String iconLink;
     private String message;
