@@ -23,6 +23,8 @@ public class AboutIcons {
     private RecyclerViewAdapter mAdapter;
     private View view;
 
+    private boolean allowModificationAnnotation = true;
+
     @SuppressLint("InflateParams")
     public AboutIcons(Context appContext, Class drawableClass) {
         this.appContext = appContext;
@@ -31,11 +33,10 @@ public class AboutIcons {
         Toasty.Config.getInstance().allowQueue(false).apply();
         view = LayoutInflater.from(appContext).inflate(R.layout.activity_icon_view, null);
         recyclerView = view.findViewById(R.id.recycler_view);
-        setAdapter();
     }
 
     private void setAdapter() {
-        mAdapter = new RecyclerViewAdapter(appContext, modelList, drawableClass);
+        mAdapter = new RecyclerViewAdapter(appContext, modelList, drawableClass, allowModificationAnnotation);
 
         for (int i = 0; i < mAdapter.getIconListSize(); i++) {
             addAttributes(i);
@@ -49,6 +50,7 @@ public class AboutIcons {
     }
 
     private void addAttributes(int index) {
+        boolean modified = false;
         String iconAuthor = "[Missing]";
         String iconWebsite = "[Missing]";
         String iconLink = "";
@@ -56,13 +58,14 @@ public class AboutIcons {
         try {
             int arrayId = appContext.getResources().getIdentifier(mAdapter.getDrawableName(index), "array", appContext.getPackageName());
             String[] iconInformation = appContext.getResources().getStringArray(arrayId);
+            modified = Boolean.parseBoolean(iconInformation[3]);
             iconAuthor = "by " + iconInformation[0];
             iconWebsite = iconInformation[1];
             iconLink = iconInformation[2];
         } catch (Exception ignored) {
         }
 
-        modelList.add(new IconModel(iconAuthor, iconWebsite, iconLink));
+        modelList.add(new IconModel(modified, iconAuthor, iconWebsite, iconLink));
     }
 
     private void onItemClick() {
@@ -90,7 +93,14 @@ public class AboutIcons {
         return this;
     }
 
+    public AboutIcons hideModificationAnnotation() {
+        view.findViewById(R.id.modified_info).setVisibility(View.GONE);
+        allowModificationAnnotation = false;
+        return this;
+    }
+
     public View get() {
+        setAdapter();
         return view;
     }
 }

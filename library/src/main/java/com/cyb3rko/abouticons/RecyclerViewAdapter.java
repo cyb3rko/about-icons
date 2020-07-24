@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Field;
@@ -18,11 +20,15 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<IconModel> modelList;
     private ArrayList<Drawable> usedDrawables;
+    private boolean allowModificationAnnotation;
+    private Context appContext;
     private OnItemClickListener onItemClickListener;
     private ArrayList<String> drawableNames = new ArrayList<>();
 
-    public RecyclerViewAdapter(Context appContext, ArrayList<IconModel> modelList, Class drawableClass) {
+    public RecyclerViewAdapter(Context appContext, ArrayList<IconModel> modelList, Class drawableClass, boolean allowModificationAnnotation) {
+        this.appContext = appContext;
         this.modelList = modelList;
+        this.allowModificationAnnotation = allowModificationAnnotation;
 
         getUsedDrawables(appContext, drawableClass);
     }
@@ -40,6 +46,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final IconModel model = getItem(position);
         ViewHolder genericViewHolder = (ViewHolder) holder;
 
+        if (allowModificationAnnotation && model.isModified()) {
+            genericViewHolder.itemRelLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorModified));
+        }
         genericViewHolder.imgUser.setImageDrawable(usedDrawables.get(position));
         genericViewHolder.itemTxtTitle.setText(model.getTitle());
         genericViewHolder.itemTxtMessage.setText(model.getMessage());
@@ -88,6 +97,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private RelativeLayout itemRelLayout;
         private ImageView imgUser;
         private TextView itemTxtTitle;
         private TextView itemTxtMessage;
@@ -95,6 +105,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public ViewHolder(final View itemView) {
             super(itemView);
 
+            itemRelLayout = itemView.findViewById(R.id.relativeLayout);
             imgUser = itemView.findViewById(R.id.img_user);
             itemTxtTitle = itemView.findViewById(R.id.item_txt_title);
             itemTxtMessage = itemView.findViewById(R.id.item_txt_message);
