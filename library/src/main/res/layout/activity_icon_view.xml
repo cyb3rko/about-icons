@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,7 +32,8 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/color_example" />
+                android:src="@drawable/color_example"
+                android:contentDescription="Color Example" />
 
             <Space
                 android:layout_width="10dp"
@@ -40,7 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Icon modified" />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -49,4 +54,5 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         android:paddingTop="10dp"/>
+
 </LinearLayout>

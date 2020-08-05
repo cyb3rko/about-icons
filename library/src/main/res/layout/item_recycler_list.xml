@@ -57,6 +57,9 @@
                 android:padding="5dp"
                 android:textColor="@android:color/white"
                 android:textSize="12sp" />
+
         </LinearLayout>
+
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

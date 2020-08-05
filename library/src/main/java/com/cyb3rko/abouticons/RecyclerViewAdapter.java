@@ -18,14 +18,15 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     private ArrayList<IconModel> modelList;
+    private ArrayList<String> drawableNames = new ArrayList<>();
     private ArrayList<Drawable> usedDrawables;
     private boolean allowModificationAnnotation;
     private Context appContext;
     private OnItemClickListener onItemClickListener;
-    private ArrayList<String> drawableNames = new ArrayList<>();
 
-    public RecyclerViewAdapter(Context appContext, ArrayList<IconModel> modelList, Class drawableClass, boolean allowModificationAnnotation) {
+    public RecyclerViewAdapter(Context appContext, ArrayList<IconModel> modelList, Class<?> drawableClass, boolean allowModificationAnnotation) {
         this.appContext = appContext;
         this.modelList = modelList;
         this.allowModificationAnnotation = allowModificationAnnotation;
@@ -46,7 +47,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         final IconModel model = getItem(position);
         ViewHolder genericViewHolder = (ViewHolder) holder;
 
-        if (allowModificationAnnotation && model.isModified()) {
+        if (allowModificationAnnotation && model.getModified()) {
             genericViewHolder.itemRelLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorModified));
         }
         genericViewHolder.imgUser.setImageDrawable(usedDrawables.get(position));
@@ -59,7 +60,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return modelList.size();
     }
 
-    private void getUsedDrawables(Context appContext, Class drawableClass) {
+    private void getUsedDrawables(Context appContext, Class<?> drawableClass) {
         Resources resources = appContext.getResources();
         Field[] allDrawables = drawableClass.getFields();
         usedDrawables = new ArrayList<>();
@@ -97,6 +98,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         private RelativeLayout itemRelLayout;
         private ImageView imgUser;
         private TextView itemTxtTitle;
