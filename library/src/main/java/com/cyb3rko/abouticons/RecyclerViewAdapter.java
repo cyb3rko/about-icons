@@ -51,6 +51,14 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             genericViewHolder.itemRelLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorModified));
         }
         genericViewHolder.imgUser.setImageDrawable(usedDrawables.get(position));
+        if (!model.getIconLicense().equals("")) {
+            genericViewHolder.itemLicense.setText(model.getIconLicense());
+        } else {
+            genericViewHolder.itemLicense.setVisibility(View.GONE);
+            ViewGroup.LayoutParams layoutParams = genericViewHolder.itemRelLayout.getLayoutParams();
+            layoutParams.height = layoutParams.height - 75;
+            genericViewHolder.itemRelLayout.setLayoutParams(layoutParams);
+        }
         genericViewHolder.itemTxtTitle.setText(model.getTitle());
         genericViewHolder.itemTxtMessage.setText(model.getMessage());
     }
@@ -97,10 +105,11 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return drawableNames.get(index).substring(1);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private RelativeLayout itemRelLayout;
         private ImageView imgUser;
+        private TextView itemLicense;
         private TextView itemTxtTitle;
         private TextView itemTxtMessage;
 
@@ -109,6 +118,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             itemRelLayout = itemView.findViewById(R.id.relativeLayout);
             imgUser = itemView.findViewById(R.id.img_user);
+            itemLicense = itemView.findViewById(R.id.item_license);
             itemTxtTitle = itemView.findViewById(R.id.item_txt_title);
             itemTxtMessage = itemView.findViewById(R.id.item_txt_message);
 

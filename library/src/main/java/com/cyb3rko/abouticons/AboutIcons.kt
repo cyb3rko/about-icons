@@ -50,18 +50,20 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         var iconAuthor = "[Missing]"
         var iconWebsite = "[Missing]"
         var iconLink = ""
+        var iconLicense = ""
 
         try {
             val arrayId = appContext.resources.getIdentifier(mAdapter.getDrawableName(index), "array", appContext.packageName)
             val iconInformation = appContext.resources.getStringArray(arrayId)
-            modified = iconInformation[3]!!.toBoolean()
             iconAuthor = "by ${iconInformation[0]}"
             iconWebsite = iconInformation[1]
             iconLink = iconInformation[2]
+            modified = iconInformation[3]!!.toBoolean()
+            iconLicense = iconInformation[4]
         } catch (ignored: Exception) {
         }
 
-        modelList.add(IconModel(modified, iconAuthor, iconWebsite, iconLink))
+        modelList.add(IconModel(modified, iconAuthor, iconWebsite, iconLink, iconLicense))
     }
 
     private fun onItemClick() {
