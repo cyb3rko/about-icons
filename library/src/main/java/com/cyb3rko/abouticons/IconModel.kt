@@ -1,9 +1,9 @@
 package com.cyb3rko.abouticons
 
 internal class IconModel(
-    val modified: Boolean,
-    val title: String,
-    val message: String,
+    val author: String,
+    val website: String,
     val iconLink: String,
+    val modified: Boolean,
     val iconLicense: String
 )

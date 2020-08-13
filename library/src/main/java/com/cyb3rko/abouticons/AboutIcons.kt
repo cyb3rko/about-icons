@@ -2,8 +2,6 @@ package com.cyb3rko.abouticons
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -46,16 +44,16 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     private fun addAttributes(index: Int) {
-        var modified = false
         var iconAuthor = "[Missing]"
         var iconWebsite = "[Missing]"
         var iconLink = ""
+        var modified = false
         var iconLicense = ""
 
         try {
             val arrayId = appContext.resources.getIdentifier(mAdapter.getDrawableName(index), "array", appContext.packageName)
             val iconInformation = appContext.resources.getStringArray(arrayId)
-            iconAuthor = "by ${iconInformation[0]}"
+            iconAuthor = iconInformation[0]
             iconWebsite = iconInformation[1]
             iconLink = iconInformation[2]
             modified = iconInformation[3]!!.toBoolean()
@@ -63,16 +61,18 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         } catch (ignored: Exception) {
         }
 
-        modelList.add(IconModel(modified, iconAuthor, iconWebsite, iconLink, iconLicense))
+        modelList.add(IconModel(iconAuthor, iconWebsite, iconLink, modified, iconLicense))
     }
 
     private fun onItemClick() {
         mAdapter.setOnItemClickListener { _, _, model ->
-            if (model.iconLink != "") {
-                appContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(model.iconLink)))
-            } else {
-                Toasty.warning(appContext, "Link not set!", Toasty.LENGTH_SHORT).show()
-            }
+            IconInfoBuilder(appContext)
+                .setDrawable(mAdapter.getDrawableInt(model))
+                .setAuthor(model.author)
+                .setWebsite(model.website)
+                .setModifiedInfo(model.modified)
+                .setLicense(model.iconLicense)
+                .start()
         }
     }
 
@@ -89,7 +89,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     fun hideModificationAnnotation(): AboutIcons {
-        view.findViewById<TextView>(R.id.modified_info).visibility = View.GONE
+        view.findViewById<TextView>(R.id.modified_text).visibility = View.GONE
         allowModificationAnnotation = false
         return this
     }

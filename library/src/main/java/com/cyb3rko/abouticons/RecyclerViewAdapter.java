@@ -1,5 +1,6 @@
 package com.cyb3rko.abouticons;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Field;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<IconModel> modelList;
+    private ArrayList<Integer> drawableIds;
     private ArrayList<String> drawableNames = new ArrayList<>();
     private ArrayList<Drawable> usedDrawables;
     private boolean allowModificationAnnotation;
@@ -42,6 +45,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         final IconModel model = getItem(position);
@@ -59,8 +63,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             layoutParams.height = layoutParams.height - 75;
             genericViewHolder.itemRelLayout.setLayoutParams(layoutParams);
         }
-        genericViewHolder.itemTxtTitle.setText(model.getTitle());
-        genericViewHolder.itemTxtMessage.setText(model.getMessage());
+        genericViewHolder.itemTxtTitle.setText("by " + model.getAuthor());
+        genericViewHolder.itemTxtMessage.setText(model.getWebsite());
     }
 
     @Override
@@ -72,12 +76,14 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Resources resources = appContext.getResources();
         Field[] allDrawables = drawableClass.getFields();
         usedDrawables = new ArrayList<>();
+        drawableIds = new ArrayList<>();
 
         for (Field field : allDrawables) {
             try {
                 if (resources.getResourceEntryName(field.getInt(null)).startsWith("_")) {
-                    usedDrawables.add(resources.getDrawable(field.getInt(null), appContext.getTheme()));
+                    usedDrawables.add(ResourcesCompat.getDrawable(resources, field.getInt(null), appContext.getTheme()));
                     drawableNames.add(resources.getResourceEntryName(field.getInt(null)));
+                    drawableIds.add(field.getInt(null));
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -91,6 +97,10 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private IconModel getItem(int position) {
         return modelList.get(position);
+    }
+
+    public int getDrawableInt(IconModel model) {
+        return drawableIds.get(modelList.indexOf(model));
     }
 
     public interface OnItemClickListener {
