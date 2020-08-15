@@ -56,7 +56,28 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
         genericViewHolder.imgUser.setImageDrawable(usedDrawables.get(position));
         if (!model.getIconLicense().equals("")) {
-            genericViewHolder.itemLicense.setText(model.getIconLicense());
+            switch (model.getIconLicense()) {
+                case "apache_2.0":
+                    genericViewHolder.itemLicense.setText("Apache 2.0");
+                    break;
+                case "mit":
+                    genericViewHolder.itemLicense.setText("MIT License");
+                    break;
+                case "cc_by_sa_3.0":
+                    genericViewHolder.itemLicense.setText("CC BY-SA 3.0");
+                    break;
+                case "cc_by_3.0":
+                    genericViewHolder.itemLicense.setText("CC BY 3.0");
+                    break;
+                case "cc_by_4.0":
+                    genericViewHolder.itemLicense.setText("CC BY 4.0");
+                    break;
+                case "cc_by_sa_4.0":
+                    genericViewHolder.itemLicense.setText("CC BY-SA 4.0");
+                    break;
+                default:
+                    break;
+            }
         } else {
             genericViewHolder.itemLicense.setVisibility(View.GONE);
             ViewGroup.LayoutParams layoutParams = genericViewHolder.itemRelLayout.getLayoutParams();

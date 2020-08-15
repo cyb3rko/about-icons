@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.Html
+import android.text.Spanned
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -11,6 +13,8 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 
 import kotlinx.android.synthetic.main.activity_icon_info.*
 
@@ -18,6 +22,7 @@ internal class IconInfoActivity: AppCompatActivity() {
 
     private lateinit var bundle: Bundle
     private lateinit var drawable: Drawable
+    private var span: Spanned? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         bundle = intent.extras!!
@@ -26,6 +31,7 @@ internal class IconInfoActivity: AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         addContent()
+        setOnLicenseClickListener()
     }
 
     @SuppressLint("SetTextI18n")
@@ -39,10 +45,31 @@ internal class IconInfoActivity: AppCompatActivity() {
         if (bundle.getBoolean("modified")) {
             modified_info.text = "Modified"
         } else {
-            modified_layout.visibility = View.GONE
-            modified_divider.visibility = View.GONE
+            modified_container.visibility = View.GONE
         }
-        license_name.text = bundle.getString("licenseName")
+        when (bundle.getString("licenseName")) {
+            "" -> license_container.visibility = View.GONE
+            "apache_2.0" -> license_name.text = "Apache 2.0"
+            "mit" -> license_name.text = "MIT License"
+            "cc_by_3.0" -> license_name.text = "CC BY 3.0"
+            "cc_by_sa_3.0" -> license_name.text = "CC BY-SA 3.0"
+            "cc_by_4.0" -> license_name.text = "CC BY 4.0"
+            "cc_by_sa_4.0" -> license_name.text = "CC BY-SA 4.0"
+        }
+    }
+
+    private fun setOnLicenseClickListener() {
+        license_name.setOnClickListener {
+            MaterialDialog(this, BottomSheet()).show {
+                message(0, if (span != null) span else readLicense())
+            }
+        }
+    }
+
+    private fun readLicense(): Spanned? {
+        span = Html.fromHtml(assets.open("${bundle.getString("licenseName")}.html").bufferedReader().use { it.readText() },
+            Html.FROM_HTML_MODE_COMPACT)
+        return span
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
