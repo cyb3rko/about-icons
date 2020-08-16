@@ -77,12 +77,6 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         }
     }
 
-    fun hideTitle(): AboutIcons {
-        val titleView: TextView = view.findViewById(R.id.title_view)
-        titleView.visibility = View.GONE
-        return this
-    }
-
     fun setTitle(customTitle: String): AboutIcons {
         val titleView: TextView = view.findViewById(R.id.title_view)
         titleView.text = customTitle
@@ -98,5 +92,12 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     fun get(): View {
         setAdapter()
         return view
+    }
+
+    @Deprecated(message = "Instead use setTitle(\"\")",replaceWith = ReplaceWith("this.setTitle(\"\")"))
+    fun hideTitle(): AboutIcons {
+        val titleView: TextView = view.findViewById(R.id.title_view)
+        titleView.visibility = View.GONE
+        return this
     }
 }
