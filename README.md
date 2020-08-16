@@ -20,7 +20,7 @@ This Android library simplifies the exhausting process of giving credits to lice
 
 YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://github.com/cyb3rko/about-icons/raw/master/.github//Sample%20App/AboutIconsSample%20v1.2.1.apk)
 
-I'm still a student so the progress might not be as fast as on other projects.
+This is my very first library and I'm still a student so the progress might not be as fast as on other projects.
 
 ## Features
 - automatically recognizing the icons to show based on file name (further information [here](#2-mark-icons))
