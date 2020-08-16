@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="icon_alink">
+        <item>Dave Gandy</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/external-link-symbol_25284</item>
+        <item>false</item>
+        <item>cc_by_3.0</item>
+    </string-array>
+
     <string-array name="icon_art">
         <item>xnimrodx</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/computer_2905155</item>
-        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_author">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/idea_2628882</item>
     </string-array>
 
     <string-array name="icon_black_eye">
@@ -19,7 +32,6 @@
         <item>Freepik</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/celebration_2979190</item>
-        <item>false</item>
     </string-array>
 
     <string-array name="icon_computer">
@@ -33,14 +45,12 @@
         <item>Freepik</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/earth_2913120</item>
-        <item>false</item>
     </string-array>
 
     <string-array name="icon_facemask">
         <item>monkik</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/mask_3017381</item>
-        <item>false</item>
     </string-array>
 
     <string-array name="icon_github">
@@ -54,13 +64,29 @@
         <item>bqlqn</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/about_2948059</item>
-        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_license">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/file_1179182</item>
+    </string-array>
+
+    <string-array name="icon_modification">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/wrench_2979591</item>
     </string-array>
     
     <string-array name="icon_nature">
         <item>Freepik</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/plant-pot_3112656</item>
-        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_website">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/www_1150626</item>
     </string-array>
 </resources>
