@@ -5,16 +5,22 @@ import android.content.Intent
 
 import java.io.Serializable
 
-class IconInfoBuilder(val appContext: Context) : Serializable {
+internal class IconInfoBuilder(private val appContext: Context) : Serializable {
 
     private var author = ""
     private var drawableId = 0
     private var licenseName = ""
+    private var link = ""
     private var modified = false
     private var website = ""
 
     fun setDrawable(drawableId: Int): IconInfoBuilder {
         this.drawableId = drawableId
+        return this
+    }
+
+    fun setLink(link: String): IconInfoBuilder {
+        this.link = link
         return this
     }
 
@@ -43,6 +49,7 @@ class IconInfoBuilder(val appContext: Context) : Serializable {
         intent.putExtra("author", author)
         intent.putExtra("drawableId", drawableId)
         intent.putExtra("licenseName", licenseName)
+        intent.putExtra("link", link)
         intent.putExtra("modified", modified)
         intent.putExtra("website", website)
         appContext.startActivity(intent)

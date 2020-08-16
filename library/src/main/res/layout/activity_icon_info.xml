@@ -16,7 +16,7 @@
         android:padding="12dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/iconCard"
+            android:id="@+id/icon_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -44,10 +44,19 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/visit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:text="Visit Icon Online"/>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp">
 
@@ -67,7 +76,7 @@
                     android:src="@drawable/author"/>
 
                 <TextView
-                    android:id="@+id/author"
+                    android:id="@+id/author_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
@@ -102,13 +111,23 @@
                     android:src="@drawable/website"/>
 
                 <TextView
-                    android:id="@+id/website"
-                    android:layout_width="match_parent"
+                    android:id="@+id/website_view"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:paddingVertical="16dp"
                     android:paddingHorizontal="12dp"
                     android:textColor="#DE000000"/>
+
+                <ImageButton
+                    android:id="@+id/link_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="6dp"
+                    android:contentDescription="Author Icon"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/link"/>
 
             </LinearLayout>
 

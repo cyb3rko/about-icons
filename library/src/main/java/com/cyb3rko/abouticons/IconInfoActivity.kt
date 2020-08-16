@@ -1,8 +1,10 @@
 package com.cyb3rko.abouticons
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
@@ -13,6 +15,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 
@@ -31,23 +34,39 @@ internal class IconInfoActivity: AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         addContent()
-        setOnLicenseClickListener()
     }
 
     @SuppressLint("SetTextI18n")
     private fun addContent() {
-        drawable = ResourcesCompat.getDrawable(applicationContext.resources, bundle.getInt("drawableId"), applicationContext.theme)!!
+        val author = bundle.getString("author")
+        val drawableId = bundle.getInt("drawableId")
+        val licenseName: String? = bundle.getString("licenseName")
+        val link: String? = bundle.getString("link")
+        val modified = bundle.getBoolean("modified")
+        val website = bundle.getString("website")
+
+        drawable = ResourcesCompat.getDrawable(applicationContext.resources, drawableId, applicationContext.theme)!!
 
         header.setBackgroundColor(getAverageColor(drawable))
         findViewById<ImageView>(R.id.iconView).setImageDrawable(drawable)
-        author.text = bundle.getString("author")
-        website.text = bundle.getString("website")
-        if (bundle.getBoolean("modified")) {
+        if (link != "") {
+            visit_button.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
+            }
+        } else {
+            visit_button.visibility = View.GONE
+        }
+        author_view.text = author
+        website_view.text = website
+        if (website == "[Missing]") {
+            link_button.visibility = View.GONE
+        }
+        if (modified) {
             modified_info.text = "Modified"
         } else {
             modified_container.visibility = View.GONE
         }
-        when (bundle.getString("licenseName")) {
+        when (licenseName) {
             "" -> license_container.visibility = View.GONE
             "apache_2.0" -> license_name.text = "Apache 2.0"
             "mit" -> license_name.text = "MIT License"
@@ -55,13 +74,22 @@ internal class IconInfoActivity: AppCompatActivity() {
             "cc_by_sa_3.0" -> license_name.text = "CC BY-SA 3.0"
             "cc_by_4.0" -> license_name.text = "CC BY 4.0"
             "cc_by_sa_4.0" -> license_name.text = "CC BY-SA 4.0"
+            else -> license_name.text = "License not found"
         }
+
+        setOnClickListeners(website)
     }
 
-    private fun setOnLicenseClickListener() {
-        license_name.setOnClickListener {
-            MaterialDialog(this, BottomSheet()).show {
-                message(0, if (span != null) span else readLicense())
+    private fun setOnClickListeners(website: String?) {
+        link_button.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://$website")))
+        }
+
+        if (license_name.text != "License not found") {
+            license_name.setOnClickListener {
+                MaterialDialog(this, BottomSheet()).show {
+                    message(0, if (span != null) span else readLicense())
+                }
             }
         }
     }

@@ -76,6 +76,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     genericViewHolder.itemLicense.setText("CC BY-SA 4.0");
                     break;
                 default:
+                    genericViewHolder.itemLicense.setText("...");
                     break;
             }
         } else {
@@ -84,7 +85,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             layoutParams.height = layoutParams.height - 75;
             genericViewHolder.itemRelLayout.setLayoutParams(layoutParams);
         }
-        genericViewHolder.itemTxtTitle.setText("by " + model.getAuthor());
+        String author = model.getAuthor();
+        genericViewHolder.itemTxtTitle.setText((!author.equals("[Missing]") ? "by " : "") + author);
         genericViewHolder.itemTxtMessage.setText(model.getWebsite());
     }
 

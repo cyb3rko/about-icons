@@ -68,6 +68,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         mAdapter.setOnItemClickListener { _, _, model ->
             IconInfoBuilder(appContext)
                 .setDrawable(mAdapter.getDrawableInt(model))
+                .setLink(model.iconLink)
                 .setAuthor(model.author)
                 .setWebsite(model.website)
                 .setModifiedInfo(model.modified)
