@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,10 +52,13 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ViewHolder genericViewHolder = (ViewHolder) holder;
 
         if (allowModificationAnnotation && model.getModified()) {
-            genericViewHolder.itemRelLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorModified));
+            genericViewHolder.itemLinLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorModified));
+        } else {
+            genericViewHolder.itemLinLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorNotModified));
         }
         genericViewHolder.imgUser.setImageDrawable(usedDrawables.get(position));
         if (!model.getIconLicense().equals("")) {
+            genericViewHolder.itemLicense.setVisibility(View.VISIBLE);
             switch (model.getIconLicense()) {
                 case "apache_2.0":
                     genericViewHolder.itemLicense.setText("Apache 2.0");
@@ -81,9 +84,6 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
         } else {
             genericViewHolder.itemLicense.setVisibility(View.GONE);
-            ViewGroup.LayoutParams layoutParams = genericViewHolder.itemRelLayout.getLayoutParams();
-            layoutParams.height = layoutParams.height - 75;
-            genericViewHolder.itemRelLayout.setLayoutParams(layoutParams);
         }
         String author = model.getAuthor();
         genericViewHolder.itemTxtTitle.setText((!author.equals("[Missing]") ? "by " : "") + author);
@@ -140,7 +140,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout itemRelLayout;
+        private LinearLayout itemLinLayout;
         private ImageView imgUser;
         private TextView itemLicense;
         private TextView itemTxtTitle;
@@ -149,7 +149,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public ViewHolder(final View itemView) {
             super(itemView);
 
-            itemRelLayout = itemView.findViewById(R.id.relativeLayout);
+            itemLinLayout = itemView.findViewById(R.id.linearLayout);
             imgUser = itemView.findViewById(R.id.img_user);
             itemLicense = itemView.findViewById(R.id.item_license);
             itemTxtTitle = itemView.findViewById(R.id.item_txt_title);
