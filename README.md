@@ -59,14 +59,14 @@ Do this by adding a string array for each icon with the icon name as string arra
 - author name (should be added)
 - website (should be added)
 - link to the used icon (should be added)
-- boolean if icon was modified (default is false)
+- boolean if icon was modified (default is *false*)
 - icon license (currently supported licenses (if you are missing one, please [open an issue](https://github.com/cyb3rko/about-icons/issues/new))): 
-  - apache_2.0
-  - mit
-  - cc_by_3.0
-  - cc_by_sa_3.0
-  - cc_by_4.0
-  - cc_by_sa_4.0
+  - [apache_2.0](https://www.apache.org/licenses/LICENSE-2.0)
+  - [mit](https://opensource.org/licenses/MIT)
+  - [cc_by_3.0](https://creativecommons.org/licenses/by/3.0/)
+  - [cc_by_sa_3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+  - [cc_by_4.0](https://creativecommons.org/licenses/by/4.0/)
+  - [cc_by_sa_4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -95,15 +95,17 @@ Optionally you can configure your AboutIcons page using following config methods
 .setTitle("Your Title")
 .hideModificationAnnotation()
 ```
-**HINT**: If you want to hide the title, simply call "setTitle("")", then the title layout will be hidden
+*HINT*: If you want to hide the title, simply call "setTitle("")", then the title layout will be hidden
 
 **Simple example for an activity**:
+Kotlin
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState);
     setContentView(AboutIcons(this, R.drawable::class.java).get());
 }
 ```
+Java
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +114,8 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-**Advanced example (using configuration) for an activity**:
+**Advanced example (using configuration) for an activity**:<br/>
+Kotlin:
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState);
@@ -124,6 +127,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
     setContentView(aboutIcons.get());
 }
 ```
+Java:
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +145,7 @@ protected void onCreate(Bundle savedInstanceState) {
 - improving scroll performance
 - improving info activity performance by moving heavy methods to coroutines
 - adding dark mode
+- adding simple licensing information for several icon library websites
 
 ## Screenshots
 |<img src=".github/images/v1.1.1/screenshot_1.webp" width="270">|<img src=".github/images/v1.1.1/screenshot_2.webp" width="270">|<img src=".github/images/v1.1.1/screenshot_3.webp" width="270">|
