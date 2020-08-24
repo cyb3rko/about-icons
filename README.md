@@ -148,7 +148,7 @@ protected void onCreate(Bundle savedInstanceState) {
 - adding simple licensing information for several icon library websites
 
 ## Screenshots
-|<img src=".github/images/v1.1.1/screenshot_1.webp" width="270">|<img src=".github/images/v1.1.1/screenshot_2.webp" width="270">|<img src=".github/images/v1.1.1/screenshot_3.webp" width="270">|
+|<img src=".github/images/v1.0.0/screenshot_1.webp" width="270">|<img src=".github/images/v1.0.0/screenshot_2.webp" width="270">|<img src=".github/images/v1.0.0/screenshot_3.webp" width="270">|
 |:---:|:---:|:---:|
 
 ## Contribute
