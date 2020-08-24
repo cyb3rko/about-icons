@@ -94,9 +94,9 @@ internal class IconInfoActivity: AppCompatActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun readLicense(): Spanned? {
-        span = Html.fromHtml(assets.open("${bundle.getString("licenseName")}.html").bufferedReader().use { it.readText() },
-            Html.FROM_HTML_MODE_COMPACT)
+        span = Html.fromHtml(assets.open("${bundle.getString("licenseName")}.html").bufferedReader().use { it.readText() })
         return span
     }
 
