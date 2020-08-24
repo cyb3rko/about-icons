@@ -1,5 +1,5 @@
 # Android About Icons Library
-[![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=24)
+[![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
 [![HJitpack](https://jitpack.io/v/cyb3rko/about-icons.svg)](https://jitpack.io/#cyb3rko/about-icons)
 [![last commit](https://img.shields.io/github/last-commit/cyb3rko/about-icons?color=F34C9F)](https://github.com/cyb3rko/about-icons/commits/master)
 [![license](https://img.shields.io/github/license/cyb3rko/about-icons)](https://www.apache.org/licenses/LICENSE-2.0)
@@ -18,7 +18,7 @@
 ## About this project
 This Android library simplifies the exhausting process of giving credits to licensed icons which require attribution (like icons from [flaticon.com](https://flaticon.com) or [fontawesome.com](https://fontawesome.com) in the free plan).
 
-YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://github.com/cyb3rko/about-icons/raw/master/.github//Sample%20App/AboutIconsSample%20v1.2.1.apk)
+YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://github.com/cyb3rko/about-icons/raw/master/.github//Sample%20App/AboutIconsSample%20v1.1.0%20(renamed).apk)
 
 This is my very first library and I'm still a student so the progress might not be as fast as on other projects.
 
@@ -42,7 +42,7 @@ allprojects {
 Then add this to your **module's** build.gradle file:
 ```gradle
 dependencies {
-  implementation 'com.github.cyb3rko:about-icons:1.1.1'
+  implementation 'com.github.cyb3rko:about-icons:1.0.0'
 }
 ```
 
