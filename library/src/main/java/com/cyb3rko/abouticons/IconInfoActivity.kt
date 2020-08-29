@@ -6,8 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.text.Html
-import android.text.Spanned
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -18,6 +16,7 @@ import androidx.core.graphics.drawable.toBitmap
 
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.cyb3rko.androidlicenses.AndroidLicenses
 
 import kotlinx.android.synthetic.main.activity_icon_info.*
 
@@ -25,13 +24,15 @@ internal class IconInfoActivity: AppCompatActivity() {
 
     private lateinit var bundle: Bundle
     private lateinit var drawable: Drawable
-    private var span: Spanned? = null
+    private lateinit var license: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         bundle = intent.extras!!
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_icon_info)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        AndroidLicenses.init(applicationContext)
 
         addContent()
     }
@@ -40,7 +41,7 @@ internal class IconInfoActivity: AppCompatActivity() {
     private fun addContent() {
         val author = bundle.getString("author")
         val drawableId = bundle.getInt("drawableId")
-        val licenseName: String? = bundle.getString("licenseName")
+        license = bundle.getString("licenseName")!!
         val link: String? = bundle.getString("link")
         val modified = bundle.getBoolean("modified")
         val website = bundle.getString("website")
@@ -66,7 +67,7 @@ internal class IconInfoActivity: AppCompatActivity() {
         } else {
             modified_container.visibility = View.GONE
         }
-        when (licenseName) {
+        when (license) {
             "" -> license_container.visibility = View.GONE
             "apache_2.0" -> license_name.text = "Apache 2.0"
             "mit" -> license_name.text = "MIT License"
@@ -74,7 +75,7 @@ internal class IconInfoActivity: AppCompatActivity() {
             "cc_by_sa_3.0" -> license_name.text = "CC BY-SA 3.0"
             "cc_by_4.0" -> license_name.text = "CC BY 4.0"
             "cc_by_sa_4.0" -> license_name.text = "CC BY-SA 4.0"
-            else -> license_name.text = "License not found"
+            else -> license_name.text = ""
         }
 
         setOnClickListeners(website)
@@ -85,19 +86,15 @@ internal class IconInfoActivity: AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://$website")))
         }
 
-        if (license_name.text != "License not found") {
+        val license = bundle.getString("licenseName")
+
+        if (license_name.text != "") {
             license_name.setOnClickListener {
                 MaterialDialog(this, BottomSheet()).show {
-                    message(0, if (span != null) span else readLicense())
+                    message(0, AndroidLicenses.get(license!!))
                 }
             }
         }
-    }
-
-    @Suppress("DEPRECATION")
-    private fun readLicense(): Spanned? {
-        span = Html.fromHtml(assets.open("${bundle.getString("licenseName")}.html").bufferedReader().use { it.readText() })
-        return span
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
