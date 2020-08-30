@@ -42,7 +42,7 @@ allprojects {
 Then add this to your **module's** build.gradle file:
 ```gradle
 dependencies {
-  implementation 'com.github.cyb3rko:about-icons:1.0.0'
+  implementation 'com.github.cyb3rko:about-icons:lastest-version'
 }
 ```
 
@@ -184,6 +184,11 @@ If you want to directly contribute code just open [pull requests](https://github
     <td><a href="https://github.com/afollestad/material-dialogs">Material Dialogs</a></td>
     <td>by <a href="https://github.com/afollestad">Aidan Follestad</a></td>
     <td>licensed under <a href="https://github.com/afollestad/material-dialogs/blob/master/LICENSE.md">Apache License 2.0</a>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/cyb3rko/android-licenses-library">Android Licenses Library</a></td>
+    <td>by <a href="https://github.com/cyb3rko">Cyb3rKo</a></td>
+    <td>licensed under <a href="https://github.com/cyb3rko/android-licenses-library/blob/master/LICENSE">GNU General Public License v3.0</a>
   </tr>
 </table>
 
