@@ -67,6 +67,12 @@
         <item>https://www.flaticon.com/free-icon/about_2948059</item>
     </string-array>
 
+    <string-array name="icon_libraries">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/books-stack-of-three_29302</item>
+    </string-array>
+
     <string-array name="icon_license">
         <item>Freepik</item>
         <item>flaticon.com</item>
