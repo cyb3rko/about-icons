@@ -13,7 +13,6 @@ import es.dmoral.toasty.Toasty
 
 import java.util.*
 
-@SuppressLint("InflateParams")
 class AboutIcons(private val appContext: Context, private val drawableClass: Class<*>) {
 
     private var allowModificationAnnotation: Boolean = true
@@ -25,6 +24,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     init {
         Toasty.Config.getInstance().allowQueue(false).apply()
 
+        @SuppressLint("InflateParams")
         view = LayoutInflater.from(appContext).inflate(R.layout.activity_icon_view, null)
         recyclerView = view.findViewById(R.id.recycler_view)
     }
