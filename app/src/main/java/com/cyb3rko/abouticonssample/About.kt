@@ -29,6 +29,20 @@ class About : AppCompatActivity() {
             )
             .addGroup("Credits")
             .addItem(Element().setTitle("Used Libraries").setIconDrawable(R.drawable._icon_libraries).setOnClickListener(showLibraries()))
+            .addGroup("Connect with me")
+            .addItem(Element().setTitle("Visit and give feedback on GitHub").setIconDrawable(R.drawable.about_icon_github).setOnClickListener {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/cyb3rko/about-icons")))
+                }
+            )
+            .addEmail("niko@cyb3rko.de", "Contact me")
+            // GitHub item
+            .addGitHub("cyb3rko", "Take a look at my other projects")
+            .addItem(
+                Element().setTitle("Follow me").setIconDrawable(R.drawable.about_icon_instagram)
+                    .setIconTint(R.color.about_instagram_color).setOnClickListener {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/_u/cyb3rko")))
+                    }
+            )
             .create()
 
         setContentView(aboutPage)
