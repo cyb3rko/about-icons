@@ -99,7 +99,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     fun hideModificationAnnotation(): AboutIcons {
-        view.findViewById<TextView>(R.id.modified_text).visibility = View.GONE
+        view.findViewById<LinearLayout>(R.id.modified_container).visibility = View.GONE
         allowModificationAnnotation = false
         return this
     }
