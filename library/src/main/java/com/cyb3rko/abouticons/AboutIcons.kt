@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 
 import androidx.recyclerview.widget.GridLayoutManager
@@ -78,8 +79,22 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     fun setTitle(customTitle: String): AboutIcons {
-        val titleView: TextView = view.findViewById(R.id.title_view)
-        titleView.text = customTitle
+        view.findViewById<TextView>(R.id.title_view).text = customTitle
+        return this
+    }
+
+    fun setTitleSize(customSize: Float): AboutIcons {
+        view.findViewById<TextView>(R.id.title_view).textSize = customSize
+        return this
+    }
+
+    fun setModificationTitle(customTitle: String): AboutIcons {
+        view.findViewById<TextView>(R.id.modified_text).text = customTitle
+        return this
+    }
+
+    fun setModificationTitleSize(customSize: Float): AboutIcons {
+        view.findViewById<TextView>(R.id.modified_text).textSize = customSize
         return this
     }
 
