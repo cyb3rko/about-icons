@@ -19,6 +19,8 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.cyb3rko.androidlicenses.AndroidLicenses
 
 import kotlinx.android.synthetic.main.activity_icon_info.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 internal class IconInfoActivity: AppCompatActivity() {
 
@@ -48,7 +50,6 @@ internal class IconInfoActivity: AppCompatActivity() {
 
         drawable = ResourcesCompat.getDrawable(applicationContext.resources, drawableId, applicationContext.theme)!!
 
-        header.setBackgroundColor(getAverageColor(drawable))
         findViewById<ImageView>(R.id.iconView).setImageDrawable(drawable)
         if (link != "") {
             visit_button.setOnClickListener {
@@ -79,6 +80,10 @@ internal class IconInfoActivity: AppCompatActivity() {
         }
 
         setOnClickListeners(website)
+
+        GlobalScope.launch {
+            header.setBackgroundColor(getAverageColor(drawable))
+        }
     }
 
     private fun setOnClickListeners(website: String?) {
@@ -112,8 +117,8 @@ internal class IconInfoActivity: AppCompatActivity() {
         var pixelSumGreen = 0
         var color: Int
 
-        for (x in 0 until bitmapWidth step 20) {
-            for (y in 0 until bitmapHeight step 20) {
+        for (x in 0 until bitmapWidth step 10) {
+            for (y in 0 until bitmapHeight step 10) {
                 color = bitmap.getPixel(x, y)
                 pixelCount++
                 pixelSumRed += Color.red(color)
