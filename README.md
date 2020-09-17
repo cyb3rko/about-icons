@@ -1,6 +1,6 @@
 # Android About Icons Library
 [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
-[![HJitpack](https://jitpack.io/v/cyb3rko/about-icons.svg)](https://jitpack.io/#cyb3rko/about-icons)
+[![Jitpack](https://jitpack.io/v/cyb3rko/about-icons.svg)](https://jitpack.io/#cyb3rko/about-icons)
 [![last commit](https://img.shields.io/github/last-commit/cyb3rko/about-icons?color=F34C9F)](https://github.com/cyb3rko/about-icons/commits/master)
 [![license](https://img.shields.io/github/license/cyb3rko/about-icons)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -18,7 +18,7 @@
 ## About this project
 This Android library simplifies the exhausting process of giving credits to licensed icons which require attribution (like icons from [flaticon.com](https://flaticon.com) or [fontawesome.com](https://fontawesome.com) in the free plan).
 
-YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://github.com/cyb3rko/about-icons/raw/master/.github//Sample%20App/AboutIconsSample%20v1.1.1.apk)
+YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://github.com/cyb3rko/about-icons/raw/master/.github//Sample%20App/AboutIconsSample%20v1.1.2.apk)!
 
 This is my very first library and I'm still a student so the progress might not be as fast as on other projects.
 
@@ -60,7 +60,7 @@ Do this by adding a string array for each icon with the icon name as string arra
 - website (should be added)
 - link to the used icon (should be added)
 - boolean if icon was modified (default is *false*)
-- icon license (currently supported licenses (if you are missing one, please [open an issue](https://github.com/cyb3rko/about-icons/issues/new))): 
+- icon license (currently supported licenses (if you are missing one, please [open an issue](https://github.com/cyb3rko/about-icons/issues/new) for the used [licenses library](https://github.com/cyb3rko/android-licenses-library))): 
   - [apache_2.0](https://www.apache.org/licenses/LICENSE-2.0)
   - [mit](https://opensource.org/licenses/MIT)
   - [cc_by_3.0](https://creativecommons.org/licenses/by/3.0/)
@@ -92,7 +92,10 @@ Do this by adding a string array for each icon with the icon name as string arra
 At last just create a new `AboutIcons` object, pass the context and the drawable class, and get the view by calling `get()`.  
 Optionally you can configure your AboutIcons page using following config methods:
 ```java
-.setTitle("Your Title")
+.setTitle(customTitle: String)
+.setTitleSize(customSize: Float)
+.setModificationTitle(customTitle: String)
+.setModificationTitleSize(customSize: Float)
 .hideModificationAnnotation()
 ```
 *HINT*: If you want to hide the title, simply call "setTitle("")", then the title layout will be hidden
@@ -135,6 +138,7 @@ protected void onCreate(Bundle savedInstanceState) {
     
     AboutIcons aboutIcons = new AboutIcons(this, R.drawable.class)
             .setTitle("Your Title")
+            .setModificationTitleSize(6f)
             .hideModificationAnnotation();
 
     setContentView(aboutIcons.get());
@@ -143,7 +147,6 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ## Planned improvements
 - improving scroll performance
-- improving info activity performance by moving heavy methods to coroutines
 - adding dark mode
 - adding simple licensing information for several icon library websites
 
@@ -160,9 +163,6 @@ If you want to directly contribute code just open [pull requests](https://github
 ## Apps using this library
 *If you want to add an app here, just open a [new issue](https://github.com/cyb3rko/about-icons/issues/new) / [PR](https://github.com/cyb3rko/about-icons/compare).*
 
-<details>
-  <summary><strong>Click here to see the list</strong></summary>
-<br>
 <table>
   <tr>
     <td><a href="https://github.com/cyb3rko/logviewer-for-openhab-app"><img src="https://i.imgur.com/a6RbPkJ.png" width="48"/></a></td>
@@ -174,6 +174,9 @@ If you want to directly contribute code just open [pull requests](https://github
 
 ## Used Libraries
 
+<details>
+  <summary><strong>Click here to see the list</strong></summary>
+<br>
 <table>
   <tr>
     <td><a href="https://github.com/GrenderG/Toasty">Toasty</a></td>
@@ -188,38 +191,29 @@ If you want to directly contribute code just open [pull requests](https://github
   <tr>
     <td><a href="https://github.com/cyb3rko/android-licenses-library">Android Licenses Library</a></td>
     <td>by <a href="https://github.com/cyb3rko">Cyb3rKo</a></td>
-    <td>licensed under <a href="https://github.com/cyb3rko/android-licenses-library/blob/master/LICENSE">GNU General Public License v3.0</a>
+    <td>licensed under <a href="https://github.com/afollestad/material-dialogs/blob/master/LICENSE.md">Apache License 2.0</a>
   </tr>
 </table>
+  </details>
 
 ## Used Icons
 
+<details>
+  <summary><strong>Click here to see the list</strong></summary>
+<br>
 <table>
-  <tr>
-    <td><a href="https://www.flaticon.com/free-icon/idea_2628882"><img src="library/src/main/res/drawable-v24/author.webp" width="48"/></a></td>
-    <td>Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.flaticon.com/free-icon/file_1179182"><img src="library/src/main/res/drawable-v24/license.webp" width="48"/></a></td>
-    <td>Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
+    <td/>
+    <td>Mulitple Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
   </tr>
   <tr>
     <td><a href="https://www.flaticon.com/free-icon/external-link-symbol_25284"><img src="library/src/main/res/drawable-v24/link.webp" width="48"/></a></td>
     <td>Icon made by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.flaticon.com/free-icon/wrench_2979591"><img src="library/src/main/res/drawable-v24/modification.webp" width="48"/></a></td>
-    <td>Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://www.flaticon.com/free-icon/www_1150626"><img src="library/src/main/res/drawable-v24/website.webp" width="48"/></a></td>
-    <td>Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
-  </tr>
 </table>
+</details>
 
 ## License
 
-    Copyright 2020 cyb3rko
+    Copyright © 2020, Cyb3rKo
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
