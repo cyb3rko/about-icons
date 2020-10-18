@@ -33,7 +33,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     private fun setAdapter() {
         mAdapter = RecyclerViewAdapter(appContext, modelList, drawableClass, allowModificationAnnotation)
 
-        for (i in 0 until mAdapter.iconListSize) {
+        for (i in 0 until mAdapter.getIconListSize()) {
             addAttributes(i)
         }
 
@@ -66,16 +66,20 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     private fun onItemClick() {
-        mAdapter.setOnItemClickListener { _, _, model ->
-            IconInfoBuilder(appContext)
-                .setDrawable(mAdapter.getDrawableInt(model))
-                .setLink(model.iconLink)
-                .setAuthor(model.author)
-                .setWebsite(model.website)
-                .setModifiedInfo(model.modified)
-                .setLicense(model.iconLicense)
-                .start()
-        }
+        mAdapter.setOnItemClickListener(object: RecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, position: Int, model: IconModel?) {
+                if (model != null) {
+                    IconInfoBuilder(appContext)
+                        .setDrawable(mAdapter.getDrawableInt(model))
+                        .setLink(model.iconLink)
+                        .setAuthor(model.author)
+                        .setWebsite(model.website)
+                        .setModifiedInfo(model.modified)
+                        .setLicense(model.iconLicense)
+                        .start()
+                }
+            }
+        })
     }
 
     fun setTitle(customTitle: String): AboutIcons {
