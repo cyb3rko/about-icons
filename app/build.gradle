@@ -4,6 +4,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        signingConf {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+            storeFile file(properties.getProperty("signing.file"))
+            storePassword properties.getProperty("signing.password")
+            keyAlias properties.getProperty("signing.key.alias")
+            keyPassword properties.getProperty("signing.key.password")
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
@@ -21,6 +32,22 @@ android {
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        release {
+            minifyEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.signingConf
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    packagingOptions {
+        pickFirst'META-INF/library_release.kotlin_module'
     }
 }
 
