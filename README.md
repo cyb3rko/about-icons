@@ -151,7 +151,7 @@ protected void onCreate(Bundle savedInstanceState) {
 - adding simple licensing information for several icon library websites
 
 ## Screenshots
-|<img src=".github/images/v1.0.0/screenshot_1.webp" width="270">|<img src=".github/images/v1.0.0/screenshot_2.webp" width="270">|<img src=".github/images/v1.0.0/screenshot_3.webp" width="270">|
+|<img src=".github/images/v1.2.0/screenshot_1.webp" width="270">|<img src=".github/images/v1.2.0/screenshot_2.webp" width="270">|<img src=".github/images/v1.2.0/screenshot_3.webp" width="270">|
 |:---:|:---:|:---:|
 
 ## Contribute
@@ -191,7 +191,7 @@ If you want to directly contribute code just open [pull requests](https://github
   <tr>
     <td><a href="https://github.com/cyb3rko/android-licenses-library">Android Licenses Library</a></td>
     <td>by <a href="https://github.com/cyb3rko">Cyb3rKo</a></td>
-    <td>licensed under <a href="https://github.com/afollestad/material-dialogs/blob/master/LICENSE.md">Apache License 2.0</a>
+    <td>licensed under <a href="https://github.com/cyb3rko/android-licenses-library/blob/master/LICENSE.md">Apache License 2.0</a>
   </tr>
 </table>
   </details>
@@ -202,12 +202,12 @@ If you want to directly contribute code just open [pull requests](https://github
   <summary><strong>Click here to see the list</strong></summary>
 <br>
 <table>
-    <td/>
-    <td>Mulitple Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
+  <tr>
+    <td>Multiple Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
   </tr>
   <tr>
-    <td><a href="https://www.flaticon.com/free-icon/external-link-symbol_25284"><img src="library/src/main/res/drawable-v24/link.webp" width="48"/></a></td>
-    <td>Icon made by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
+    <td>Multiple Icons made by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></td>
+  </tr>  
 </table>
 </details>
 
