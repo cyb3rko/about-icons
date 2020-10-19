@@ -216,6 +216,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:padding="6dp"
+                    android:clickable="false"
                     android:contentDescription="Author Icon"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:scaleType="fitXY"
