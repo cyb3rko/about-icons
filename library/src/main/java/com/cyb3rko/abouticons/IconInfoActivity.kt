@@ -94,7 +94,7 @@ internal class IconInfoActivity: AppCompatActivity() {
         val license = bundle.getString("licenseName")
 
         if (license_name.text != "") {
-            license_name.setOnClickListener {
+            license_container.setOnClickListener {
                 MaterialDialog(this, BottomSheet()).show {
                     message(0, AndroidLicenses.get(license!!))
                 }

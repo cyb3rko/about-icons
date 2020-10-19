@@ -204,12 +204,22 @@
 
                 <TextView
                     android:id="@+id/license_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:paddingVertical="16dp"
                     android:paddingHorizontal="12dp"
                     android:textColor="#DE000000"/>
+
+                <ImageView
+                    android:id="@+id/license_hint"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="6dp"
+                    android:contentDescription="Author Icon"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/click"/>
 
             </LinearLayout>
 
