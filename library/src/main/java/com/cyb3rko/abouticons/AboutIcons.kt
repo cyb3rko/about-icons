@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import es.dmoral.toasty.Toasty
-
 import java.util.*
 
 class AboutIcons(private val appContext: Context, private val drawableClass: Class<*>) {
