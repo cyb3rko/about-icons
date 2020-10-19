@@ -9,15 +9,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
-
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.cyb3rko.androidlicenses.AndroidLicenses
-
 import kotlinx.android.synthetic.main.activity_icon_info.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.dmoral.toasty.Toasty
@@ -16,7 +17,9 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     private var allowModificationAnnotation: Boolean = true
     private lateinit var mAdapter: RecyclerViewAdapter
     private val modelList = ArrayList<IconModel>()
+    private val modifiedContainer: LinearLayout
     private var recyclerView: RecyclerView
+    private var titleView: TextView
     private var view: View
 
     init {
@@ -25,6 +28,8 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         @SuppressLint("InflateParams")
         view = LayoutInflater.from(appContext).inflate(R.layout.activity_icon_view, null)
         recyclerView = view.findViewById(R.id.recycler_view)
+        modifiedContainer = view.findViewById(R.id.modified_container)
+        titleView = view.findViewById(R.id.title_view)
     }
 
     private fun setAdapter() {
@@ -80,12 +85,16 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     fun setTitle(customTitle: String): AboutIcons {
-        view.findViewById<TextView>(R.id.title_view).text = customTitle
+        if (customTitle.isNotBlank()) {
+            titleView.text = customTitle
+        } else {
+            titleView.visibility = View.GONE
+        }
         return this
     }
 
     fun setTitleSize(customSize: Float): AboutIcons {
-        view.findViewById<TextView>(R.id.title_view).textSize = customSize
+        titleView.textSize = customSize
         return this
     }
 
@@ -100,13 +109,16 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     fun hideModificationAnnotation(): AboutIcons {
-        view.findViewById<LinearLayout>(R.id.modified_container).visibility = View.GONE
+        modifiedContainer.visibility = View.GONE
         allowModificationAnnotation = false
         return this
     }
 
     fun get(): View {
         setAdapter()
+        if (titleView.visibility == View.GONE && modifiedContainer.visibility == View.GONE) {
+            view.findViewById<CardView>(R.id.header).visibility = View.GONE
+        }
         return view
     }
 
