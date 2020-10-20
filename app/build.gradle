@@ -4,6 +4,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.cyb3rko.abouticonssample"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 6
+        versionName "1.2.0"
+    }
+
     signingConfigs {
         signingConf {
             Properties properties = new Properties()
@@ -14,16 +25,6 @@ android {
             keyAlias properties.getProperty("signing.key.alias")
             keyPassword properties.getProperty("signing.key.password")
         }
-    }
-    compileSdkVersion 30
-    buildToolsVersion "29.0.3"
-
-    defaultConfig {
-        applicationId "com.cyb3rko.abouticonssample"
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode 6
-        versionName "1.2.0"
     }
 
     buildTypes {
