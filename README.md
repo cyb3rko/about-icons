@@ -23,6 +23,11 @@ If you want to build the app on your own, build the debug build variant.
 
 This is my very first library and I'm still a student so the progress might not be as fast as on other projects.
 
+## WARNING
+It could be that this library only works with gradle version 4.0.2 or lower.  
+As I experienced version 4.1.0 leads to the bug that no drawables can be found by the library.  
+If you have any ideas why's that please open an issue or a pull request.
+
 ## Features
 - automatically recognizing the icons to show based on file name (further information [here](#2-mark-icons))
 - automatically retrieving the information and credits by reading related string arrays (further information [here](#3-add-information))
