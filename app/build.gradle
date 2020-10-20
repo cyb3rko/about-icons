@@ -15,17 +15,17 @@ android {
         versionName "1.2.0"
     }
 
-    signingConfigs {
-        signingConf {
-            Properties properties = new Properties()
-            properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-            storeFile file(properties.getProperty("signing.file"))
-            storePassword properties.getProperty("signing.password")
-            keyAlias properties.getProperty("signing.key.alias")
-            keyPassword properties.getProperty("signing.key.password")
-        }
-    }
+//    signingConfigs {
+//        signingConf {
+//            Properties properties = new Properties()
+//            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//
+//            storeFile file(properties.getProperty("signing.file"))
+//            storePassword properties.getProperty("signing.password")
+//            keyAlias properties.getProperty("signing.key.alias")
+//            keyPassword properties.getProperty("signing.key.password")
+//        }
+//    }
 
     buildTypes {
         debug {
@@ -36,7 +36,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources false
-            signingConfig signingConfigs.signingConf
+//            signingConfig signingConfigs.signingConf
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
