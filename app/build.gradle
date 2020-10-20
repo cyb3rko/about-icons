@@ -28,6 +28,7 @@ android {
 //    }
 
     buildTypes {
+        // if you want to build it on your own, build the debug build variant
         debug {
             minifyEnabled true
             shrinkResources false
