@@ -42,7 +42,6 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
         android:orientation="vertical">
 
         <Button
@@ -84,8 +83,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:paddingVertical="16dp"
-                    android:paddingHorizontal="12dp"
-                    android:textColor="#DE000000" />
+                    android:paddingHorizontal="12dp" />
 
             </LinearLayout>
 
@@ -121,8 +119,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:paddingVertical="16dp"
-                    android:paddingHorizontal="12dp"
-                    android:textColor="#DE000000"/>
+                    android:paddingHorizontal="12dp" />
 
                 <ImageButton
                     android:id="@+id/link_button"
@@ -169,8 +166,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:paddingVertical="16dp"
-                    android:paddingHorizontal="12dp"
-                    android:textColor="#DE000000"/>
+                    android:paddingHorizontal="12dp" />
 
             </LinearLayout>
 
@@ -192,7 +188,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingVertical="8dp"
-                android:background="#EAEAEA"
+                android:background="@color/cardAlternateBackground"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
@@ -208,8 +204,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:paddingVertical="16dp"
-                    android:paddingHorizontal="12dp"
-                    android:textColor="#DE000000"/>
+                    android:paddingHorizontal="12dp" />
 
                 <ImageView
                     android:id="@+id/license_hint"
