@@ -79,7 +79,10 @@ internal class IconInfoActivity: AppCompatActivity() {
         setOnClickListeners(website)
 
         GlobalScope.launch {
-            header.setBackgroundColor(getAverageColor(drawable))
+            val backgroundColor = getAverageColor(drawable)
+            runOnUiThread {
+                header.setBackgroundColor(backgroundColor)
+            }
         }
     }
 
