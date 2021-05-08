@@ -10,6 +10,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 class AboutIcons(private val appContext: Context, private val drawableClass: Class<*>) {
@@ -35,8 +37,10 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     private fun setAdapter() {
         mAdapter = RecyclerViewAdapter(appContext, modelList, drawableClass, allowModificationAnnotation)
 
-        for (i in 0 until mAdapter.getIconListSize()) {
-            addAttributes(i)
+        GlobalScope.launch {
+            for (i in 0 until mAdapter.getIconListSize()) {
+                addAttributes(i)
+            }
         }
 
         val layoutManager = GridLayoutManager(appContext, 2)
