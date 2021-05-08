@@ -54,6 +54,7 @@ class RecyclerViewAdapter(
                 "cc_by_3.0" -> genericViewHolder.itemLicense.text = "CC BY 3.0"
                 "cc_by_4.0" -> genericViewHolder.itemLicense.text = "CC BY 4.0"
                 "cc_by_sa_4.0" -> genericViewHolder.itemLicense.text = "CC BY-SA 4.0"
+                "cc_by_nc_3.0" -> genericViewHolder.itemLicense.text = "CC BY-NC 3.0"
                 else -> genericViewHolder.itemLicense.text = "..."
             }
         } else {

@@ -73,7 +73,8 @@ internal class IconInfoActivity: AppCompatActivity() {
             "cc_by_sa_3.0" -> license_name.text = "CC BY-SA 3.0"
             "cc_by_4.0" -> license_name.text = "CC BY 4.0"
             "cc_by_sa_4.0" -> license_name.text = "CC BY-SA 4.0"
-            else -> license_name.text = ""
+            "cc_by_nc_3.0" -> license_name.text = "CC BY-NC 3.0"
+            else -> license_name.text = "Not found"
         }
 
         setOnClickListeners(website)
