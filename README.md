@@ -21,12 +21,7 @@ This Android library simplifies the exhausting process of giving credits to lice
 YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://github.com/cyb3rko/about-icons/raw/master/.github//Sample%20App/AboutIconsSample%20v1.2.0.apk)!  
 If you want to build the app on your own, build the debug build variant.
 
-This is my very first library and I'm still a student so the progress might not be as fast as on other projects.
-
-## WARNING
-It could be that this library only works with gradle version 4.0.2 or lower.  
-As I experienced version 4.1.0 leads to the bug that no drawables can be found by the library.  
-If you have any ideas why's that please open an issue or a pull request.
+This was my very first library and I'm still a student so the progress might not be as fast as on other projects.
 
 ## Features
 - automatically recognizing the icons to show based on file name (further information [here](#2-mark-icons))
@@ -73,6 +68,7 @@ Do this by adding a string array for each icon with the icon name as string arra
   - [cc_by_sa_3.0](https://creativecommons.org/licenses/by-sa/3.0/)
   - [cc_by_4.0](https://creativecommons.org/licenses/by/4.0/)
   - [cc_by_sa_4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+  - [cc_by_nc_3.0](https://creativecommons.org/licenses/by-nc/3.0/)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -106,15 +102,16 @@ Optionally you can configure your AboutIcons page using following config methods
 ```
 *HINT*: If you want to hide the title, simply call "setTitle("")", then the title layout will be hidden
 
-**Simple example for an activity**:
+**Simple example for a fragment**:
 Kotlin
 ```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState);
-    setContentView(AboutIcons(this, R.drawable::class.java).get());
+override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    super.onCreateView(inflater, container, savedInstanceState)
+
+    return AboutIcons(requireContext(), R.drawable::class.java).get()
 }
 ```
-Java
+Java Activity
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -123,20 +120,20 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-**Advanced example (using configuration) for an activity**:<br/>
+**Advanced example (using configuration) for a fragment**:<br/>
 Kotlin:
 ```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState);
+override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    super.onCreateView(inflater, container, savedInstanceState)
     
-    val aboutIcons = AboutIcons(this, R.drawable::class.java)
+    val aboutIcons = AboutIcons(requireContext(), R.drawable::class.java)
             .setTitle("Your Title")
             .hideModificationAnnotation();
 
-    setContentView(aboutIcons.get());
+     return aboutIcons.get()
 }
 ```
-Java:
+Java Activity:
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -151,9 +148,20 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
+## Proguard Minify Compatibility
+If you have minify enabled and you let it shrink the resources this library is most likely to not be able to find your icons you want to give credit to.
+
+Then simply add the following to your proguard rules:
+
+```pro
+-keep class .R
+-keep class **.R$* {
+    <fields>;
+}
+```
+
 ## Planned improvements
 - improving scroll performance
-- adding dark mode
 - adding simple licensing information for several icon library websites
 
 ## Screenshots
@@ -219,7 +227,7 @@ If you want to directly contribute code just open [pull requests](https://github
 
 ## License
 
-    Copyright © 2020, Cyb3rKo
+    Copyright © 2021, Cyb3rKo
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
