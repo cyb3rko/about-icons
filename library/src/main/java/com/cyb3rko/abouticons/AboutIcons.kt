@@ -1,6 +1,7 @@
 package com.cyb3rko.abouticons
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -35,19 +36,18 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     }
 
     private fun setAdapter() {
-        mAdapter = RecyclerViewAdapter(appContext, modelList, drawableClass, allowModificationAnnotation)
-
         GlobalScope.launch {
+            mAdapter = RecyclerViewAdapter(appContext, modelList, drawableClass, allowModificationAnnotation)
             for (i in 0 until mAdapter.getIconListSize()) {
                 addAttributes(i)
             }
+            (appContext as Activity).runOnUiThread {
+                val layoutManager = GridLayoutManager(appContext, 2)
+                recyclerView.layoutManager = layoutManager
+                recyclerView.adapter = mAdapter
+            }
+            onItemClick()
         }
-
-        val layoutManager = GridLayoutManager(appContext, 2)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = mAdapter
-
-        onItemClick()
     }
 
     private fun addAttributes(index: Int) {
