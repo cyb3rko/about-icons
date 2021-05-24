@@ -47,15 +47,16 @@ class RecyclerViewAdapter(
         genericViewHolder.imgUser.setImageDrawable(usedDrawables[position])
         if (model!!.iconLicense.isNotEmpty()) {
             genericViewHolder.itemLicense.visibility = View.VISIBLE
-            when (model.iconLicense) {
-                "apache_2.0" -> genericViewHolder.itemLicense.text = "Apache 2.0"
-                "mit" -> genericViewHolder.itemLicense.text = "MIT License"
-                "cc_by_sa_3.0" -> genericViewHolder.itemLicense.text = "CC BY-SA 3.0"
-                "cc_by_3.0" -> genericViewHolder.itemLicense.text = "CC BY 3.0"
-                "cc_by_4.0" -> genericViewHolder.itemLicense.text = "CC BY 4.0"
-                "cc_by_sa_4.0" -> genericViewHolder.itemLicense.text = "CC BY-SA 4.0"
-                "cc_by_nc_3.0" -> genericViewHolder.itemLicense.text = "CC BY-NC 3.0"
-                else -> genericViewHolder.itemLicense.text = "..."
+            genericViewHolder.itemLicense.text = when (model.iconLicense) {
+                "apache_2.0" -> "Apache 2.0"
+                "mit" -> "MIT License"
+                "cc_by_sa_3.0" -> "CC BY-SA 3.0"
+                "cc_by_3.0" -> "CC BY 3.0"
+                "cc_by_4.0" -> "CC BY 4.0"
+                "cc_by_sa_4.0" -> "CC BY-SA 4.0"
+                "cc_by_nc_3.0" -> "CC BY-NC 3.0"
+                "cc_by_nc_sa_3.0" -> "CC BY-NC-SA 3.0"
+                else -> "..."
             }
         } else {
             genericViewHolder.itemLicense.visibility = View.GONE

@@ -66,17 +66,20 @@ internal class IconInfoActivity: AppCompatActivity() {
         } else {
             modified_container.visibility = View.GONE
         }
-        when (license) {
-            "" -> license_container.visibility = View.GONE
-            "apache_2.0" -> license_name.text = "Apache 2.0"
-            "mit" -> license_name.text = "MIT License"
-            "cc_by_3.0" -> license_name.text = "CC BY 3.0"
-            "cc_by_sa_3.0" -> license_name.text = "CC BY-SA 3.0"
-            "cc_by_4.0" -> license_name.text = "CC BY 4.0"
-            "cc_by_sa_4.0" -> license_name.text = "CC BY-SA 4.0"
-            "cc_by_nc_3.0" -> license_name.text = "CC BY-NC 3.0"
-            else -> license_name.text = "Not found"
+        license_name.text = when (license) {
+            "" -> ""
+            "apache_2.0" -> "Apache 2.0"
+            "mit" -> "MIT License"
+            "cc_by_3.0" -> "CC BY 3.0"
+            "cc_by_sa_3.0" -> "CC BY-SA 3.0"
+            "cc_by_4.0" -> "CC BY 4.0"
+            "cc_by_sa_4.0" -> "CC BY-SA 4.0"
+            "cc_by_nc_3.0" -> "CC BY-NC 3.0"
+            "cc_by_nc_sa_3.0" -> "CC BY-NC-SA 3.0"
+            else -> "Not found"
         }
+
+        if (license_name.text == "") license_container.visibility = View.GONE
 
         visit_button.setTextColor(ContextCompat.getColor(applicationContext, R.color.defaultTextColor))
         setOnClickListeners(website)
