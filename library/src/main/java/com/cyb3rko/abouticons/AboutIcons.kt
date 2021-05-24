@@ -3,12 +3,16 @@ package com.cyb3rko.abouticons
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.dmoral.toasty.Toasty
@@ -126,6 +130,9 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         setAdapter()
         if (titleView.visibility == View.GONE && modifiedContainer.visibility == View.GONE) {
             view.findViewById<CardView>(R.id.header).visibility = View.GONE
+        } else {
+            view.findViewById<ImageView>(R.id.color_sample).colorFilter = PorterDuffColorFilter(ContextCompat.getColor(appContext,
+                R.color.colorModified), PorterDuff.Mode.SRC_ATOP)
         }
         return view
     }

@@ -63,7 +63,6 @@ class RecyclerViewAdapter(
         val author = model.author
         genericViewHolder.itemTxtTitle.text = (if (author != "[Missing]") "by " else "") + author
         genericViewHolder.itemTxtMessage.text = model.website
-        genericViewHolder.itemLinLayout.setBackgroundColor(appContext.resources.getColor(R.color.cardBackground))
     }
 
     override fun getItemCount(): Int = modelList.size

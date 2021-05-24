@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="cardBackground">@color/cardview_dark_background</color>
+    <color name="colorModified">#6C695A</color>
+    <color name="colorNotModified">@color/cardview_dark_background</color>
     <color name="cardAlternateBackground">#5A5A5A</color>
 </resources>
