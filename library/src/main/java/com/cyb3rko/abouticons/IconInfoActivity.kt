@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.afollestad.materialdialogs.MaterialDialog
@@ -77,6 +78,7 @@ internal class IconInfoActivity: AppCompatActivity() {
             else -> license_name.text = "Not found"
         }
 
+        visit_button.setTextColor(ContextCompat.getColor(applicationContext, R.color.defaultTextColor))
         setOnClickListeners(website)
 
         GlobalScope.launch {
