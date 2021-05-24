@@ -6,6 +6,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,6 +22,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
     private lateinit var mAdapter: RecyclerViewAdapter
     private val modelList = ArrayList<IconModel>()
     private val modifiedContainer: LinearLayout
+    private var progressBar: ProgressBar
     private var recyclerView: RecyclerView
     private var titleView: TextView
     private var view: View
@@ -32,6 +34,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         view = LayoutInflater.from(appContext).inflate(R.layout.activity_icon_view, null)
         recyclerView = view.findViewById(R.id.recycler_view)
         modifiedContainer = view.findViewById(R.id.modified_container)
+        progressBar = view.findViewById(R.id.progress_bar)
         titleView = view.findViewById(R.id.title_view)
     }
 
@@ -44,6 +47,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
             (appContext as Activity).runOnUiThread {
                 val layoutManager = GridLayoutManager(appContext, 2)
                 recyclerView.layoutManager = layoutManager
+                progressBar.visibility = View.GONE
                 recyclerView.adapter = mAdapter
             }
             onItemClick()
