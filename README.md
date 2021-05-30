@@ -18,7 +18,7 @@
 ## About this project
 This Android library simplifies the exhausting process of giving credits to licensed icons which require attribution (like icons from [flaticon.com](https://flaticon.com) or [fontawesome.com](https://fontawesome.com) in the free plan).
 
-YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://github.com/cyb3rko/about-icons/raw/master/.github//Sample%20App/AboutIconsSample%20v1.2.0.apk)!  
+YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://play.google.com/store/apps/details?id=com.cyb3rko.abouticonssample)!  
 If you want to build the app on your own, build the debug build variant.
 
 This was my very first library and I'm still a student so the progress might not be as fast as on other projects.
