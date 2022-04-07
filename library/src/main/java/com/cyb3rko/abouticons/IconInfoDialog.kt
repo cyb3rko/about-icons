@@ -1,54 +1,48 @@
 package com.cyb3rko.abouticons
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.view.MenuItem
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.DialogFragment
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.cyb3rko.androidlicenses.AndroidLicenses
-import kotlinx.android.synthetic.main.activity_icon_info.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.android.synthetic.main.dialog_icon_info.*
 
-internal class IconInfoActivity: AppCompatActivity() {
-
-    private lateinit var bundle: Bundle
-    private lateinit var drawable: Drawable
-    private lateinit var license: String
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        bundle = intent.extras!!
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_icon_info)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        AndroidLicenses.init(applicationContext)
-
-        addContent()
+class IconInfoDialog(
+    private val appContext: Context,
+    private val author: String,
+    private val drawableId: Int,
+    private val licenseName: String,
+    private val link: String,
+    private val modified: Boolean,
+    private val website: String
+) : DialogFragment() {
+    companion object {
+        const val TAG = "IconInfoDialog"
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun addContent() {
-        val author = bundle.getString("author")
-        val drawableId = bundle.getInt("drawableId")
-        license = bundle.getString("licenseName")!!
-        val link: String? = bundle.getString("link")
-        val modified = bundle.getBoolean("modified")
-        val website = bundle.getString("website")
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return layoutInflater.inflate(R.layout.dialog_icon_info, container)
+    }
 
-        drawable = ResourcesCompat.getDrawable(applicationContext.resources, drawableId, applicationContext.theme)!!
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-        findViewById<ImageView>(R.id.iconView).setImageDrawable(drawable)
+        val drawable = ResourcesCompat.getDrawable(appContext.resources, drawableId, appContext.theme)!!
+        view.findViewById<ImageView>(R.id.icon_view).setImageDrawable(drawable)
         if (link != "") {
             visit_button.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
@@ -66,7 +60,7 @@ internal class IconInfoActivity: AppCompatActivity() {
         } else {
             modified_container.visibility = View.GONE
         }
-        license_name.text = when (license) {
+        license_name.text = when (licenseName) {
             "" -> ""
             "apache_2.0" -> "Apache 2.0"
             "mit" -> "MIT License"
@@ -81,36 +75,24 @@ internal class IconInfoActivity: AppCompatActivity() {
 
         if (license_name.text == "") license_container.visibility = View.GONE
 
-        visit_button.setTextColor(ContextCompat.getColor(applicationContext, R.color.defaultTextColor))
         setOnClickListeners(website)
-
-        GlobalScope.launch {
-            val backgroundColor = getAverageColor(drawable)
-            runOnUiThread {
-                header.setBackgroundColor(backgroundColor)
-            }
-        }
+        header.setBackgroundColor(getAverageColor(drawable))
     }
 
     private fun setOnClickListeners(website: String?) {
+        AndroidLicenses.init(appContext)
+
         link_button.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://$website")))
         }
 
-        val license = bundle.getString("licenseName")
-
         if (license_name.text != "") {
             license_container.setOnClickListener {
-                MaterialDialog(this, BottomSheet()).show {
-                    message(0, AndroidLicenses.get(license!!))
+                MaterialDialog(appContext, BottomSheet()).show {
+                    message(text = AndroidLicenses.get(licenseName))
                 }
             }
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        finish()
-        return super.onOptionsItemSelected(item)
     }
 
     private fun getAverageColor(drawable: Drawable): Int {

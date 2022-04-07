@@ -12,7 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(AboutIcons(this, R.drawable::class.java).setTitle("My Used Icons").get())
+        setContentView(AboutIcons(this, R.drawable::class.java, supportFragmentManager)
+            .setTitle("My Used Icons").get())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

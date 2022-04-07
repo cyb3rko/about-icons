@@ -1,11 +1,13 @@
 package com.cyb3rko.abouticons
 
 import android.content.Context
-import android.content.Intent
-
+import androidx.fragment.app.FragmentManager
 import java.io.Serializable
 
-internal class IconInfoBuilder(private val appContext: Context) : Serializable {
+internal class IconInfoBuilder(
+    private val appContext: Context,
+    private val fragmentManager: FragmentManager
+) : Serializable {
 
     private var author = ""
     private var drawableId = 0
@@ -44,14 +46,13 @@ internal class IconInfoBuilder(private val appContext: Context) : Serializable {
         return this
     }
 
-    fun start() {
-        val intent = Intent(appContext, IconInfoActivity::class.java)
-        intent.putExtra("author", author)
-        intent.putExtra("drawableId", drawableId)
-        intent.putExtra("licenseName", licenseName)
-        intent.putExtra("link", link)
-        intent.putExtra("modified", modified)
-        intent.putExtra("website", website)
-        appContext.startActivity(intent)
-    }
+    fun start() = IconInfoDialog(
+        appContext,
+        author,
+        drawableId,
+        licenseName,
+        link,
+        modified,
+        website
+    ).show(fragmentManager, IconInfoDialog.TAG)
 }

@@ -2,5 +2,6 @@
 <resources>
     <color name="colorModified">#FBE9C5</color>
     <color name="colorNotModified">@color/cardview_light_background</color>
+    <color name="dialogBackground">#C3C3C3</color>
     <color name="cardAlternateBackground">#EAEAEA</color>
 </resources>

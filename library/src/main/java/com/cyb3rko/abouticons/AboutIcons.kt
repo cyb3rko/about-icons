@@ -13,13 +13,18 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class AboutIcons(private val appContext: Context, private val drawableClass: Class<*>) {
+class AboutIcons(
+    private val appContext: Context,
+    private val drawableClass: Class<*>,
+    private val fragmentManager: FragmentManager
+) {
 
     private var allowModificationAnnotation: Boolean = true
     private lateinit var mAdapter: RecyclerViewAdapter
@@ -80,7 +85,7 @@ class AboutIcons(private val appContext: Context, private val drawableClass: Cla
         mAdapter.setOnItemClickListener(object: RecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, model: IconModel?) {
                 if (model != null) {
-                    IconInfoBuilder(appContext)
+                    IconInfoBuilder(appContext, fragmentManager)
                         .setDrawable(mAdapter.getDrawableInt(model))
                         .setLink(model.iconLink)
                         .setAuthor(model.author)
