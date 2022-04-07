@@ -2,12 +2,11 @@ package com.cyb3rko.abouticons
 
 import android.content.Context
 import androidx.fragment.app.FragmentManager
-import java.io.Serializable
 
 internal class IconInfoBuilder(
     private val appContext: Context,
     private val fragmentManager: FragmentManager
-) : Serializable {
+) {
 
     private var author = ""
     private var drawableId = 0

@@ -15,10 +15,10 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerViewAdapter(
-    val appContext: Context,
-    var modelList: ArrayList<IconModel>,
+    private val appContext: Context,
+    private var modelList: ArrayList<IconModel>,
     drawableClass: Class<*>,
-    val allowModificationAnnotation: Boolean
+    private val allowModificationAnnotation: Boolean
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var drawableIds: ArrayList<Int>
@@ -39,13 +39,13 @@ class RecyclerViewAdapter(
         val model = getItem(position)
         val genericViewHolder = holder as ViewHolder
 
-        if (allowModificationAnnotation && model!!.modified) {
+        if (allowModificationAnnotation && model.modified) {
             genericViewHolder.itemLinLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorModified))
         } else {
             genericViewHolder.itemLinLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorNotModified))
         }
         genericViewHolder.imgUser.setImageDrawable(usedDrawables[position])
-        if (model!!.iconLicense.isNotEmpty()) {
+        if (model.iconLicense.isNotEmpty()) {
             genericViewHolder.itemLicense.visibility = View.VISIBLE
             genericViewHolder.itemLicense.text = when (model.iconLicense) {
                 "apache_2.0" -> "Apache 2.0"
@@ -75,10 +75,11 @@ class RecyclerViewAdapter(
         drawableIds = ArrayList()
         for (field in allDrawables) {
             try {
-                if (resources.getResourceEntryName(field.getInt(null)).startsWith("_")) {
-                    usedDrawables.add(ResourcesCompat.getDrawable(resources, field.getInt(null), appContext.theme)!!)
-                    drawableNames.add(resources.getResourceEntryName(field.getInt(null)))
-                    drawableIds.add(field.getInt(null))
+                val fieldId = field.getInt(null)
+                if (resources.getResourceEntryName(fieldId).startsWith("_")) {
+                    usedDrawables.add(ResourcesCompat.getDrawable(resources, fieldId, appContext.theme)!!)
+                    drawableNames.add(resources.getResourceEntryName(fieldId))
+                    drawableIds.add(fieldId)
                 }
             } catch (e: IllegalAccessException) {
                 Log.e("About Icons", "IllegalAccessException while reading used drawables.")
@@ -90,11 +91,11 @@ class RecyclerViewAdapter(
         this.itemClickListener = onItemClickListener!!
     }
 
-    private fun getItem(position: Int): IconModel? {
+    private fun getItem(position: Int): IconModel {
         return modelList[position]
     }
 
-    fun getDrawableInt(model: IconModel?): Int  = drawableIds[modelList.indexOf(model)]
+    fun getDrawableInt(model: IconModel?): Int = drawableIds[modelList.indexOf(model)]
 
     interface OnItemClickListener {
         fun onItemClick(view: View?, position: Int, model: IconModel?)
@@ -102,7 +103,7 @@ class RecyclerViewAdapter(
 
     fun getIconListSize(): Int = usedDrawables.size
 
-    fun getDrawableName(index: Int): String? = drawableNames[(index)].substring(1)
+    fun getDrawableName(index: Int): String = drawableNames[index].substring(1)
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemLinLayout: LinearLayout = itemView.findViewById(R.id.linearLayout)

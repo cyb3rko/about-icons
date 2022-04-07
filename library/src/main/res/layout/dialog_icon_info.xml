@@ -11,8 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="HardcodedText">
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/header"
@@ -38,7 +37,8 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:contentDescription="Icon"
-                    tools:src="@tools:sample/avatars" />
+                    tools:src="@tools:sample/avatars"
+                    tools:ignore="HardcodedText" />
 
             </androidx.cardview.widget.CardView>
 
@@ -56,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:text="Visit Icon Online"/>
+                android:text="Visit Icon Online"
+                tools:ignore="HardcodedText" />
 
             <androidx.cardview.widget.CardView
                 app:cardElevation="4dp"
@@ -82,7 +82,8 @@
                         android:layout_height="40dp"
                         android:padding="6dp"
                         android:contentDescription="Author Icon"
-                        android:src="@drawable/author"/>
+                        android:src="@drawable/author"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/author_view"
