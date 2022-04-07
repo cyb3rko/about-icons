@@ -32,7 +32,12 @@
         <item>Freepik</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/celebration_2979190</item>
-        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_click">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/one-finger-click_84590</item>
     </string-array>
 
     <string-array name="icon_computer">
