@@ -1,5 +1,6 @@
 package com.cyb3rko.abouticons
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -18,6 +19,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.cyb3rko.androidlicenses.AndroidLicenses
 import kotlinx.android.synthetic.main.dialog_icon_info.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class IconInfoDialog(
     private val appContext: Context,
@@ -76,7 +79,13 @@ class IconInfoDialog(
         if (license_name.text == "") license_container.visibility = View.GONE
 
         setOnClickListeners(website)
-        header.setBackgroundColor(getAverageColor(drawable))
+
+        GlobalScope.launch {
+            val backgroundColor = getAverageColor(drawable)
+            (appContext as Activity).runOnUiThread {
+                header.setBackgroundColor(backgroundColor)
+            }
+        }
     }
 
     private fun setOnClickListeners(website: String?) {
