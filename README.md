@@ -168,7 +168,7 @@ Then simply add the following to your proguard rules:
 - adding simple licensing information for several icon library websites
 
 ## Screenshots
-|<img src=".github/images/v1.2.0/screenshot_1.webp" width="270">|<img src=".github/images/v1.2.0/screenshot_2.webp" width="270">|<img src=".github/images/v1.2.0/screenshot_3.webp" width="270">|
+|<img src=".github/images/v1.5.0/screenshot_1.png" width="270">|<img src=".github/images/v1.5.0/screenshot_2.png" width="270">|<img src=".github/images/v1.5.0/screenshot_3.png" width="270">|
 |:---:|:---:|:---:|
 
 ## Contribute
