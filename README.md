@@ -18,7 +18,10 @@
 ## About this project
 This Android library simplifies the exhausting process of giving credits to licensed icons which require attribution (like icons from [flaticon.com](https://flaticon.com) or [fontawesome.com](https://fontawesome.com) in the free plan).
 
-YOU CAN **DOWNLOAD** THE **SAMPLE APP** [HERE](https://play.google.com/store/apps/details?id=com.cyb3rko.abouticonssample)!  
+YOU CAN **DOWNLOAD** THE **SAMPLE APP** here:  
+
+<a href="https://play.google.com/store/apps/details?id=com.cyb3rko.quaetor"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250"/></a>
+
 If you want to build the app on your own, build the debug build variant.
 
 This was my very first library and I'm still a student so the progress might not be as fast as on other projects.
@@ -108,7 +111,7 @@ Kotlin
 override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     super.onCreateView(inflater, container, savedInstanceState)
 
-    return AboutIcons(requireContext(), R.drawable::class.java).get()
+    return AboutIcons(requireContext(), R.drawable::class.java, supportFragmentManager).get()
 }
 ```
 Java Activity
@@ -116,7 +119,7 @@ Java Activity
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(new AboutIcons(this, R.drawable.class).get());
+    setContentView(new AboutIcons(this, R.drawable.class, getSupportFragmentManager()).get());
 }
 ```
 
@@ -126,7 +129,7 @@ Kotlin:
 override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     super.onCreateView(inflater, container, savedInstanceState)
     
-    val aboutIcons = AboutIcons(requireContext(), R.drawable::class.java)
+    val aboutIcons = AboutIcons(requireContext(), R.drawable::class.java, supportFragmentManager)
             .setTitle("Your Title")
             .hideModificationAnnotation();
 
@@ -139,7 +142,7 @@ Java Activity:
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     
-    AboutIcons aboutIcons = new AboutIcons(this, R.drawable.class)
+    AboutIcons aboutIcons = new AboutIcons(this, R.drawable.class, getSupportFragmentManager())
             .setTitle("Your Title")
             .setModificationTitleSize(6f)
             .hideModificationAnnotation();
@@ -193,11 +196,6 @@ If you want to directly contribute code just open [pull requests](https://github
 <br>
 <table>
   <tr>
-    <td><a href="https://github.com/GrenderG/Toasty">Toasty</a></td>
-    <td>by <a href="https://github.com/GrenderG">GrenderG</a></td>
-    <td>licensed under <a href="https://github.com/GrenderG/Toasty/blob/master/LICENSE">GNU Lesser General Public License v3.0</a>
-  </tr>
-  <tr>
     <td><a href="https://github.com/afollestad/material-dialogs">Material Dialogs</a></td>
     <td>by <a href="https://github.com/afollestad">Aidan Follestad</a></td>
     <td>licensed under <a href="https://github.com/afollestad/material-dialogs/blob/master/LICENSE.md">Apache License 2.0</a>
@@ -227,7 +225,7 @@ If you want to directly contribute code just open [pull requests](https://github
 
 ## License
 
-    Copyright © 2021, Cyb3rKo
+    Copyright © 2022, Cyb3rKo
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
