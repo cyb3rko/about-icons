@@ -20,7 +20,7 @@ This Android library simplifies the exhausting process of giving credits to lice
 
 YOU CAN **DOWNLOAD** THE **SAMPLE APP** here:  
 
-<a href="https://play.google.com/store/apps/details?id=com.cyb3rko.quaetor"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250"/></a>
+<a href="https://play.google.com/store/apps/details?id=com.cyb3rko.abouticonssample"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250"/></a>
 
 If you want to build the app on your own, build the debug build variant.
 
