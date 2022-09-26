@@ -1,6 +1,5 @@
 package com.cyb3rko.abouticons.modals
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -21,10 +20,8 @@ import androidx.fragment.app.DialogFragment
 import com.cyb3rko.abouticons.R
 import com.cyb3rko.androidlicenses.AndroidLicenses
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class IconInfoDialog(
     private val appContext: Context,
@@ -106,11 +103,9 @@ class IconInfoDialog(
             website
         )
 
-        GlobalScope.launch {
-            val backgroundColor = getAverageColor(drawable)
-            (appContext as Activity).runOnUiThread {
-                header.setBackgroundColor(backgroundColor)
-            }
+        CoroutineScope(Dispatchers.Main).launch {
+            val backgroundColor = async { getAverageColor(drawable) }.await()
+            header.setBackgroundColor(backgroundColor)
         }
     }
 

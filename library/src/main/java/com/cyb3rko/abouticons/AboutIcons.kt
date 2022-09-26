@@ -1,7 +1,6 @@
 package com.cyb3rko.abouticons
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -16,9 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.*
 import java.util.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class AboutIcons(
     private val appContext: Context,
@@ -45,22 +43,23 @@ class AboutIcons(
     }
 
     private fun setAdapter() {
-        GlobalScope.launch {
+        val layoutManager = GridLayoutManager(appContext, 2)
+        recyclerView.layoutManager = layoutManager
+
+        CoroutineScope(Dispatchers.Main).launch {
             mAdapter = RecyclerViewAdapter(appContext, modelList, drawableClass, allowModificationAnnotation)
             for (i in 0 until mAdapter.getIconListSize()) {
-                addAttributes(i)
+                val task = async { fetchAttributes(i) }
+                modelList.add(task.await())
             }
-            (appContext as Activity).runOnUiThread {
-                val layoutManager = GridLayoutManager(appContext, 2)
-                recyclerView.layoutManager = layoutManager
-                progressBar.visibility = View.GONE
-                recyclerView.adapter = mAdapter
-            }
+
+            recyclerView.adapter = mAdapter
             onItemClick()
+            progressBar.visibility = View.GONE
         }
     }
 
-    private fun addAttributes(index: Int) {
+    private fun fetchAttributes(index: Int): IconModel {
         var iconAuthor = "[Missing]"
         var iconWebsite = "[Missing]"
         var iconLink = ""
@@ -78,7 +77,7 @@ class AboutIcons(
         } catch (ignored: Exception) {
         }
 
-        modelList.add(IconModel(iconAuthor, iconWebsite, iconLink, modified, iconLicense))
+        return IconModel(iconAuthor, iconWebsite, iconLink, modified, iconLicense)
     }
 
     private fun onItemClick() {
