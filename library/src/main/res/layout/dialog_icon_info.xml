@@ -169,7 +169,7 @@
                         android:src="@drawable/modification"/>
 
                     <TextView
-                        android:id="@+id/modified_info"
+                        android:id="@+id/modified_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"

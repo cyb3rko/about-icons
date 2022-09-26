@@ -11,13 +11,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.DialogFragment
 import com.cyb3rko.abouticons.R
 import com.cyb3rko.androidlicenses.AndroidLicenses
-import kotlinx.android.synthetic.main.dialog_icon_info.*
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -44,25 +49,42 @@ class IconInfoDialog(
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
         val drawable = ResourcesCompat.getDrawable(appContext.resources, drawableId, appContext.theme)!!
-        view.findViewById<ImageView>(R.id.icon_view).setImageDrawable(drawable)
+
+        // Views
+        val header = view.findViewById<LinearLayout>(R.id.header)
+        val iconView = view.findViewById<ImageView>(R.id.icon_view)
+        val visitButton = view.findViewById<MaterialButton>(R.id.visit_button)
+
+        val authorView = view.findViewById<MaterialTextView>(R.id.author_view)
+
+        val websiteView = view.findViewById<MaterialTextView>(R.id.website_view)
+        val linkButton = view.findViewById<ImageButton>(R.id.link_button)
+
+        val modifiedContainer = view.findViewById<CardView>(R.id.modified_container)
+        val modifiedView = view.findViewById<MaterialTextView>(R.id.modified_view)
+
+        val licenseContainer = view.findViewById<LinearLayout>(R.id.license_container)
+        val licenseNameView = view.findViewById<MaterialTextView>(R.id.license_name)
+
+        iconView.setImageDrawable(drawable)
         if (link != "") {
-            visit_button.setOnClickListener {
+            visitButton.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
             }
         } else {
-            visit_button.visibility = View.GONE
+            visitButton.visibility = View.GONE
         }
-        author_view.text = author
-        website_view.text = website
+        authorView.text = author
+        websiteView.text = website
         if (website == "[Missing]") {
-            link_button.visibility = View.GONE
+            linkButton.visibility = View.GONE
         }
         if (modified) {
-            modified_info.text = "Modified"
+            modifiedView.text = "Modified"
         } else {
-            modified_container.visibility = View.GONE
+            modifiedContainer.visibility = View.GONE
         }
-        license_name.text = when (licenseName) {
+        licenseNameView.text = when (licenseName) {
             "" -> ""
             "apache_2.0" -> "Apache 2.0"
             "mit" -> "MIT License"
@@ -75,9 +97,14 @@ class IconInfoDialog(
             else -> "Not found"
         }
 
-        if (license_name.text == "") license_container.visibility = View.GONE
+        if (licenseNameView.text == "") licenseContainer.visibility = View.GONE
 
-        setOnClickListeners(website)
+        setOnClickListeners(
+            linkButton,
+            licenseContainer,
+            licenseNameView.text.isEmpty(),
+            website
+        )
 
         GlobalScope.launch {
             val backgroundColor = getAverageColor(drawable)
@@ -87,15 +114,20 @@ class IconInfoDialog(
         }
     }
 
-    private fun setOnClickListeners(website: String?) {
+    private fun setOnClickListeners(
+        linkButton: ImageButton,
+        licenseContainer: LinearLayout,
+        licenseEmpty: Boolean,
+        website: String?
+    ) {
         AndroidLicenses.init(appContext)
 
-        link_button.setOnClickListener {
+        linkButton.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://$website")))
         }
 
-        if (license_name.text != "") {
-            license_container.setOnClickListener {
+        if (!licenseEmpty) {
+            licenseContainer.setOnClickListener {
                 IconLicenseBottomSheet(licenseName).show(
                     parentFragmentManager,
                     IconLicenseBottomSheet.TAG
