@@ -2,6 +2,7 @@ package com.cyb3rko.abouticons
 
 import android.content.Context
 import androidx.fragment.app.FragmentManager
+import com.cyb3rko.abouticons.modals.IconInfoDialog
 
 internal class IconInfoBuilder(
     private val appContext: Context,

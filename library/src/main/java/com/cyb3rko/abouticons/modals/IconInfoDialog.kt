@@ -1,4 +1,4 @@
-package com.cyb3rko.abouticons
+package com.cyb3rko.abouticons.modals
 
 import android.app.Activity
 import android.content.Context
@@ -15,8 +15,7 @@ import android.widget.ImageView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.DialogFragment
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.cyb3rko.abouticons.R
 import com.cyb3rko.androidlicenses.AndroidLicenses
 import kotlinx.android.synthetic.main.dialog_icon_info.*
 import kotlinx.coroutines.GlobalScope
@@ -97,9 +96,10 @@ class IconInfoDialog(
 
         if (license_name.text != "") {
             license_container.setOnClickListener {
-                MaterialDialog(appContext, BottomSheet()).show {
-                    message(text = AndroidLicenses.get(licenseName))
-                }
+                IconLicenseBottomSheet(licenseName).show(
+                    parentFragmentManager,
+                    IconLicenseBottomSheet.TAG
+                )
             }
         }
     }
