@@ -8,8 +8,6 @@ import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
 
-import com.mikepenz.aboutlibraries.LibsBuilder
-
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 
@@ -50,20 +48,6 @@ class About : AppCompatActivity() {
 
     private fun showLibraries() : View.OnClickListener {
         return View.OnClickListener {
-            LibsBuilder()
-                .withShowLoadingProgress(true)
-                .withAboutVersionShownCode(false)
-                .withAboutVersionShownName(false)
-                .withFields(R.string::class.java.fields)
-                .withAutoDetect(true)
-                .withAboutIconShown(false)
-                .withAboutVersionShown(false)
-                .withVersionShown(true)
-                .withLicenseDialog(true)
-                .withLicenseShown(true)
-                .withCheckCachedDetection(true)
-                .withSortEnabled(true)
-                .start(application)
         }
     }
 
