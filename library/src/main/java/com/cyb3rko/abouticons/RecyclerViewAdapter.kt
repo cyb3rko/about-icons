@@ -8,11 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 
 class RecyclerViewAdapter(
     private val appContext: Context,
@@ -37,17 +36,22 @@ class RecyclerViewAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = getItem(position)
-        val genericViewHolder = holder as ViewHolder
+        val viewholder = holder as ViewHolder
 
-        if (allowModificationAnnotation && model.modified) {
-            genericViewHolder.itemLinLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorModified))
+        val cardBackground = if (allowModificationAnnotation && model.modified) {
+            R.drawable.cardview_modified_background
         } else {
-            genericViewHolder.itemLinLayout.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorNotModified))
+            R.drawable.cardview_background
         }
-        genericViewHolder.imgUser.setImageDrawable(usedDrawables[position])
+        viewholder.container.background = ResourcesCompat.getDrawable(
+            appContext.resources,
+            cardBackground,
+            appContext.theme
+        )
+        viewholder.imgUser.setImageDrawable(usedDrawables[position])
         if (model.iconLicense.isNotEmpty()) {
-            genericViewHolder.itemLicense.visibility = View.VISIBLE
-            genericViewHolder.itemLicense.text = when (model.iconLicense) {
+            viewholder.itemLicense.visibility = View.VISIBLE
+            viewholder.itemLicense.text = when (model.iconLicense) {
                 "apache_2.0" -> "Apache 2.0"
                 "mit" -> "MIT License"
                 "cc_by_sa_3.0" -> "CC BY-SA 3.0"
@@ -59,11 +63,11 @@ class RecyclerViewAdapter(
                 else -> "..."
             }
         } else {
-            genericViewHolder.itemLicense.visibility = View.GONE
+            viewholder.itemLicense.visibility = View.GONE
         }
         val author = model.author
-        genericViewHolder.itemTxtTitle.text = (if (author != "[Missing]") "by " else "") + author
-        genericViewHolder.itemTxtMessage.text = model.website
+        viewholder.itemTxtTitle.text = (if (author != "[Missing]") "by " else "") + author
+        viewholder.itemTxtMessage.text = model.website
     }
 
     override fun getItemCount(): Int = modelList.size
@@ -106,7 +110,7 @@ class RecyclerViewAdapter(
     fun getDrawableName(index: Int): String = drawableNames[index].substring(1)
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var itemLinLayout: LinearLayout = itemView.findViewById(R.id.linearLayout)
+        var container: MaterialCardView = itemView.findViewById(R.id.container)
         var imgUser: ImageView = itemView.findViewById(R.id.img_user)
         var itemLicense: TextView = itemView.findViewById(R.id.item_license)
         var itemTxtTitle: TextView = itemView.findViewById(R.id.item_txt_title)

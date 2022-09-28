@@ -39,7 +39,10 @@ class About : AppCompatActivity() {
             )
             .addEmail("niko@cyb3rko.de", "Contact me")
             // GitHub item
-            .addGitHub("cyb3rko", "Take a look at my other projects")
+            .addItem(Element().setTitle("Take a look at my other projects").setIconDrawable(githubIcon).setOnClickListener {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/cyb3rko/")))
+                }
+            )
             .addItem(
                 Element().setTitle("Follow me").setIconDrawable(instagramIcon)
                     .setIconTint(instagramColor).setOnClickListener {

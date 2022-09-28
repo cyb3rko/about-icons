@@ -20,15 +20,16 @@
             android:orientation="vertical"
             android:padding="12dp">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/icon_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
+                style="@style/Widget.Material3.CardView.Elevated"
                 app:cardElevation="4dp"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="12dp"
                 app:contentPadding="10dp">
 
                 <ImageView
@@ -40,7 +41,7 @@
                     tools:src="@tools:sample/avatars"
                     tools:ignore="HardcodedText" />
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
@@ -50,7 +51,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/visit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,15 +60,16 @@
                 android:text="Visit Icon Online"
                 tools:ignore="HardcodedText" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 app:cardElevation="4dp"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp">
+                android:layout_marginEnd="10dp"
+                style="@style/Widget.Material3.CardView.Elevated">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,7 +87,7 @@
                         android:src="@drawable/author"
                         tools:ignore="HardcodedText" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/author_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -95,16 +97,17 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 app:cardElevation="4dp"
                 app:cardCornerRadius="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp">
+                android:layout_marginEnd="10dp"
+                style="@style/Widget.Material3.CardView.Elevated">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,7 +124,7 @@
                         android:contentDescription="Website Icon"
                         android:src="@drawable/website"/>
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/website_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -141,9 +144,9 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 app:cardElevation="4dp"
                 app:cardCornerRadius="10dp"
                 android:id="@+id/modified_container"
@@ -151,7 +154,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp">
+                android:layout_marginEnd="10dp"
+                style="@style/Widget.Material3.CardView.Elevated">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -168,7 +172,7 @@
                         android:contentDescription="Tools Icon"
                         android:src="@drawable/modification"/>
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/modified_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -178,16 +182,17 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 app:cardElevation="4dp"
                 app:cardCornerRadius="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp">
+                android:layout_marginEnd="10dp"
+                style="@style/Widget.Material3.CardView.Elevated">
 
                 <LinearLayout
                     android:id="@+id/license_container"
@@ -206,7 +211,7 @@
                         android:contentDescription="License Icon"
                         android:src="@drawable/license"/>
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/license_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -227,7 +232,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
