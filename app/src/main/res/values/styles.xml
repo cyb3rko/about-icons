@@ -16,4 +16,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.AboutPage" parent="about_About">
+        <item name="aboutBackground">@color/aboutPageColor</item>
+    </style>
+
 </resources>

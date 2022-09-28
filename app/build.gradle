@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.mikepenz.aboutlibraries.plugin'
 }
 
 android {
@@ -8,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.cyb3rko.abouticonssample"
-        minSdk 16
+        minSdk 21
         targetSdkVersion 33
         versionCode 9
         versionName "1.5.0"
@@ -55,6 +56,8 @@ android {
 }
 
 dependencies {
+    implementation "com.mikepenz:aboutlibraries-core:$aboutLibsVersion"
+    implementation "com.mikepenz:aboutlibraries:$aboutLibsVersion"
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'com.google.android.material:material:1.6.1'
