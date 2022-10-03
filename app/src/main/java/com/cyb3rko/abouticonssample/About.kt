@@ -27,7 +27,6 @@ class About : AppCompatActivity() {
         val instagramColor = mehdi.sakout.aboutpage.R.color.about_instagram_color
 
         val aboutPage: View = AboutPage(this, R.style.Theme_AboutPage)
-            .setImage(R.mipmap.ic_launcher_foreground)
             .setDescription(getString(R.string.about_description))
             .addItem(
                 Element(
