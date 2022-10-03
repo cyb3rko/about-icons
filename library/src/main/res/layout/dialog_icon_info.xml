@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="Visit Icon Online"
+                android:text="@string/visit_link_hint"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.card.MaterialCardView

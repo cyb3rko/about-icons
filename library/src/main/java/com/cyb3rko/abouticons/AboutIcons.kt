@@ -60,8 +60,9 @@ class AboutIcons(
     }
 
     private fun fetchAttributes(index: Int): IconModel {
-        var iconAuthor = "[Missing]"
-        var iconWebsite = "[Missing]"
+        val missingHint = "[${appContext.getString(R.string.missing)}]"
+        var iconAuthor = missingHint
+        var iconWebsite = missingHint
         var iconLink = ""
         var modified = false
         var iconLicense = ""
@@ -138,7 +139,7 @@ class AboutIcons(
         return view
     }
 
-    @Deprecated(message = "Instead use setTitle(\"\")",replaceWith = ReplaceWith("this.setTitle(\"\")"))
+    @Deprecated(message = "Instead use setTitle(\"\")", replaceWith = ReplaceWith("this.setTitle(\"\")"))
     fun hideTitle(): AboutIcons {
         val titleView: TextView = view.findViewById(R.id.title_view)
         titleView.visibility = View.GONE

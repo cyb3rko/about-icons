@@ -66,7 +66,12 @@ class RecyclerViewAdapter(
             viewholder.itemLicense.visibility = View.GONE
         }
         val author = model.author
-        viewholder.itemTxtTitle.text = (if (author != "[Missing]") "by " else "") + author
+        viewholder.itemTxtTitle.text = (
+                if (author != "[${appContext.getString(R.string.missing)}]") {
+                    "by "
+                } else {
+                    ""
+                }) + author
         viewholder.itemTxtMessage.text = model.website
     }
 

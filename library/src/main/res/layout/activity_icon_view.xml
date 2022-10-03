@@ -32,7 +32,7 @@
             android:id="@+id/title_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Used Icons"
+            android:text="@string/about_icons_title"
             android:textSize="26sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
@@ -60,7 +60,7 @@
                 android:id="@+id/modified_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Icon modified" />
+                android:text="@string/icon_modified" />
 
         </LinearLayout>
 

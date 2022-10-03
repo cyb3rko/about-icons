@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_icons_title">Benutzte Icons</string>
+    <string name="missing">Fehlt</string>
+    <string name="modified">Modifiziert</string>
+    <string name="visit_link_hint">Online anzeigen</string>
+    <string name="icon_modified">Icon modifiziert</string>
+</resources>

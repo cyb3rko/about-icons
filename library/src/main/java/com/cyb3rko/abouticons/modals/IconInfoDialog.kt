@@ -73,11 +73,11 @@ class IconInfoDialog(
         }
         authorView.text = author
         websiteView.text = website
-        if (website == "[Missing]") {
+        if (website == "[${appContext.getString(R.string.missing)}]") {
             linkButton.visibility = View.GONE
         }
         if (modified) {
-            modifiedView.text = "Modified"
+            modifiedView.text = appContext.getString(R.string.modified)
         } else {
             modifiedContainer.visibility = View.GONE
         }
