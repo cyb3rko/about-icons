@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">About Icons Demo</string>
+    <string name="menu_github">Auf GitHub anzeigen</string>
+    <string name="menu_about">Über</string>
+    <string name="activity_libraries">Benutzte Libraries</string>
+    <string name="toast_url_failed">Öffnen der URL fehlgeschlagen, URL kopiert</string>
+    <string name="about_description">Demo-App der Android-Library \'AboutIcons\'</string>
+    <string name="about_credits">Credits</string>
+    <string name="about_connect">Verbinde dich</string>
+    <string name="about_github">Besuche das Projekt und gebe Feedback auf GitHub</string>
+    <string name="about_contact">Kontaktiere mich</string>
+    <string name="about_github_other">Schaue dir meine anderen Projekte an</string>
+    <string name="about_instagram">Folge mir</string>
+</resources>

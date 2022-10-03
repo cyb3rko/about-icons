@@ -28,42 +28,42 @@ class About : AppCompatActivity() {
 
         val aboutPage: View = AboutPage(this, R.style.Theme_AboutPage)
             .setImage(R.mipmap.ic_launcher_foreground)
-            .setDescription("App for showcasing the Android library 'AboutIcons'")
+            .setDescription(getString(R.string.about_description))
             .addItem(
                 Element(
                     "Version ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})",
                     githubIcon
                 ).setOnClickListener { openUrl("https://github.com/cyb3rko/about-icons/releases") }
             )
-            .addGroup("Credits")
+            .addGroup(getString(R.string.about_credits))
             .addItem(
                 Element(
-                    "Used Libraries",
+                    getString(R.string.activity_libraries),
                     R.drawable._icon_libraries
                 ).setOnClickListener { showLibraries() }
             )
-            .addGroup("Connect with me")
+            .addGroup(getString(R.string.about_connect))
             .addItem(
                 Element(
-                    "Visit and give feedback on GitHub",
+                    getString(R.string.about_github),
                     githubIcon
                 ).setOnClickListener { openUrl("https://github.com/cyb3rko/about-icons") }
             )
             .addItem(
                 Element(
-                    "Contact me",
+                    getString(R.string.about_contact),
                     emailIcon
                 ).setOnClickListener { writeEmail() }
             )
             .addItem(
                 Element(
-                    "Take a look at my other projects",
+                    getString(R.string.about_github_other),
                     githubIcon
                 ).setOnClickListener { openUrl("https://github.com/cyb3rko/") }
             )
             .addItem(
                 Element(
-                    "Follow me",
+                    getString(R.string.about_instagram),
                     instagramIcon
                 )
                     .setIconTint(instagramColor)
@@ -79,7 +79,7 @@ class About : AppCompatActivity() {
             .withLicenseShown(true)
             .withAboutIconShown(false)
             .withAboutVersionShown(false)
-            .withActivityTitle("Used Libraries")
+            .withActivityTitle(getString(R.string.activity_libraries))
             .withSearchEnabled(true)
             .start(applicationContext)
     }
@@ -110,7 +110,7 @@ class About : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             storeToClipboard(url)
-            showToast("Opening URL failed, copied URL instead")
+            showToast(getString(R.string.toast_url_failed))
         }
     }
 
