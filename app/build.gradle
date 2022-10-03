@@ -10,9 +10,9 @@ android {
     defaultConfig {
         applicationId "com.cyb3rko.abouticonssample"
         minSdk 21
-        targetSdkVersion 33
-        versionCode 9
-        versionName "1.5.0"
+        targetSdk 33
+        versionCode 10
+        versionName "2.0.0"
     }
 
 //    signingConfigs {
